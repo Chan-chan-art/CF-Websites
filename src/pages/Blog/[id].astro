@@ -1,0 +1,53 @@
+---
+// src/pages/Blog/[id].astro
+import { getCollection, type CollectionEntry,  getEntry, render } from "astro:content"; // ✅ Explicitly import render
+import { Image } from 'astro:assets';
+import Layout from '../../layouts/Layout.astro';
+import Main from '../../components/Main.astro';
+import H1 from '../../components/H1.astro';
+import { getEntryBySlug } from "astro:content";
+import { getDataEntryById } from "astro:content";
+
+ // 1. Export getStaticPaths so Astro knows what IDs to generate
+export async function getStaticPaths() {
+  const posts = await getCollection('post');
+  return posts.map(post => ({
+    params: { id: post.id } // Matches your [id].astro filename
+  }));
+}
+
+// 2. Your existing page logic remains below
+const { id } = Astro.params;
+const post = await getEntry('post', id); // Note: standard Astro v5 often uses getEntry()
+
+if (!post) {
+  return Astro.redirect("/404");
+}
+
+const { Content } = await render(post);
+---
+
+
+
+<Layout title={post.data.title}>
+  <Main>
+    <div class="pt-10">
+    <H1 text={post.data.title} />
+    </div>
+    <Image 
+      src={post.data.image}
+      width={1024}
+      height={1024 / 1.5}
+      alt={post.data.title}
+      class="rounded-2xl shadow-xl mb-4 aspect-thumbnail object-cover" />
+    
+    <div class="prose prose-2xl overflow-visible relative mb--28">
+       <!-- ✅ This outputs your Markdown body text -->
+       <Content />
+    </div>
+</Main>
+</Layout>
+
+
+
+

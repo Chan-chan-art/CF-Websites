@@ -1,0 +1,21 @@
+---
+import {Image} from "astro:assets"
+---
+
+<header class="px-20 py-4 bg-teal-100 shadow-md">
+<div class="mx-auto flex max-w-7xl items-center justify-between">
+    <!-- Logo and site title -->
+  <a href="/" class="flex items-center gap-x-4">
+      <Image src="/hb.webp" alt="Logo" width={60} height={60} alt="Heartbeat Icon" class="rounded-2xl aspect-thumbnail object-cover" format="webp" />
+       <span class="uppercase font-bold p-4">Blog</span>
+    </a>
+    <!-- Navigation links -->
+<ul class="flex items-center gap-x-8">
+  <li><a href="/" class="text-teal-900 font-bold hover:text-teal-500">Home</a></li>
+  <li><a href="/about" class="text-teal-900 font-bold hover:text-teal-500">About</a></li> 
+  <li><a href="/" class="text-teal-900 font-bold hover:text-teal-500">Blog</a></li>
+</ul>
+</div>
+</header>
+
+  
