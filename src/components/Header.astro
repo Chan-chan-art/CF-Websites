@@ -1,21 +1,58 @@
 ---
-import {Image} from "astro:assets"
+import { Image } from 'astro:assets';
+// Your imports here
 ---
 
-<header class="px-20 py-4 bg-teal-100 shadow-md">
-<div class="mx-auto flex max-w-7xl items-center justify-between">
+<header class="px-6 md:px-20 py-4 bg-teal-100 shadow-md relative">
+  <div class="mx-auto flex max-w-7xl items-center justify-between">
+    
     <!-- Logo and site title -->
-  <a href="/" class="flex items-center gap-x-4">
-      <Image src="/hb.webp" alt="Logo" width={60} height={60} alt="Heartbeat Icon" class="rounded-2xl aspect-thumbnail object-cover" format="webp" />
-       <span class="uppercase font-bold p-4">Blog</span>
-    </a>
-    <!-- Navigation links -->
-<ul class="flex items-center gap-x-8">
-  <li><a href="/" class="text-teal-900 font-bold hover:text-teal-500">Home</a></li>
-  <li><a href="/about" class="text-teal-900 font-bold hover:text-teal-500">About</a></li> 
-  <li><a href="/" class="text-teal-900 font-bold hover:text-teal-500">Blog</a></li>
-</ul>
-</div>
+    <div class="flex-shrink-0">
+      <a href="/" class="flex items-center gap-x-4">
+        <Image src="/hb.webp" width={60} height={60} alt="Heartbeat Icon" class="rounded-2xl object-cover" format="webp" />
+        <span class="uppercase font-bold p-4">Blog</span>
+      </a>
+    </div>
+
+    <!-- Hidden Checkbox for Sidebar Toggle State -->
+    <input type="checkbox" id="menu-toggle" class="peer hidden" />
+
+    <!-- Hamburger Icon Button -->
+    <label for="menu-toggle" class="md:hidden cursor-pointer flex flex-col gap-y-1.5 p-2 z-50 relative">
+      <span class="w-6 h-0.5 bg-teal-900 rounded transition-all duration-300 transform raw-span-1"></span>
+      <span class="w-6 h-0.5 bg-teal-900 rounded transition-all duration-300 raw-span-2"></span>
+      <span class="w-6 h-0.5 bg-teal-900 rounded transition-all duration-300 transform raw-span-3"></span>
+    </label>
+
+    <!-- Navigation Sidebar Drawer -->   
+    <ul class="
+      /* Mobile Layout */
+      fixed top-0 right-0 h-screen w-64 bg-teal-50 p-8 pt-24 shadow-2xl flex flex-col gap-y-6 z-40 transform translate-x-full transition-transform duration-300 ease-in-out
+      /* Show when checkbox is checked */
+      peer-checked:translate-x-0 
+      /* Desktop Layout Override */
+      md:static md:h-auto md:w-auto md:p-0 md:shadow-none md:flex-row md:gap-x-8 md:translate-x-0 md:bg-transparent md:flex
+    ">
+      <li><a href="/" class="text-teal-900 font-bold hover:text-teal-500 block text-lg md:text-base border-b border-teal-200 pb-2 md:border-none md:pb-0">Home</a></li>
+      <li><a href="/" class="text-teal-900 font-bold hover:text-teal-500 block text-lg md:text-base border-b border-teal-200 pb-2 md:border-none md:pb-0">About</a></li> 
+      <li><a href="/" class="text-teal-900 font-bold hover:text-teal-500 block text-lg md:text-base border-b border-teal-200 pb-2 md:border-none md:pb-0">Blog</a></li>
+    </ul>
+
+    <!-- Dark Overlay Background -->
+    <label for="menu-toggle" class="fixed inset-0 bg-opacity-40 z-30 hidden peer-checked:block md:peer-checked:hidden"></label>
+
+  </div>
 </header>
 
-  
+<style>
+  /* Explicitly targeting the spans via checkbox rules */
+  #menu-toggle:checked ~ label .raw-span-1 {
+    transform: translateY(8px) rotate(45deg);
+  }
+  #menu-toggle:checked ~ label .raw-span-2 {
+    opacity: 0;
+  }
+  #menu-toggle:checked ~ label .raw-span-3 {
+    transform: translateY(-8px) rotate(-45deg);
+  }
+</style>

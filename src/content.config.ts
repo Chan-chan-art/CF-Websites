@@ -19,3 +19,7 @@ const postsCollection = defineCollection({
 export const collections =  {
   post: postsCollection
 }
+
+
+
+
