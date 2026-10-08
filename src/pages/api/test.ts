@@ -76,7 +76,7 @@ ${content}
 `;
 
         // 6. Define where to save the file inside your project
-    const targetDir = path.join(process.cwd(), 'src', 'content', 'blog');
+    const targetDir = path.join(process.cwd(), 'src', 'content', 'post');
     
     // Auto-build any missing folders dynamically
     await fs.mkdir(targetDir, { recursive: true });

@@ -16,6 +16,7 @@
     "@astrojs/mdx": "^8.0.2",
     "@tailwindcss/vite": "^4.3.3",
     "astro": "^7.3.5",
+    "astro-icon": "^1.2.0",
     "tailwindcss": "^4.3.3"
   },
   "allowScripts": {
@@ -23,6 +24,7 @@
   },
   "devDependencies": {
     "@tailwindcss/typography": "^0.5.4",
-    "@types/node": "^26.6.4"
+    "@types/node": "^26.6.4",
+    "tailwind-scrollbar": "^4.0.2"
   }
 }
