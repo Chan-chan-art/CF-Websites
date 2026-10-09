@@ -1,11 +1,8 @@
 ---
 title: "Gear Is Insanely Expensive"
-slug: "expensive gear"
 categories: ["studio tips"]
 featured: false
 image: ./images/gear.CFQSK5TA_S61wQ.webp
-description: "Collaboration is a key component of many creative endeavors, and music production is no exception."
-date: 07/06/2024
 author: "jane doe"
 ---
 

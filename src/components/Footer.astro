@@ -1,12 +1,45 @@
 ---
   const year = new Date().getFullYear();
   const companyName = "Rhythm Nation"
+  import { Icon } from "astro-icon/components"
+  const socialLinks = [
+  {
+    name: "Facebook",
+    url: "https://facebook.com",
+    icon: "mdi:facebook"
+  },
+  {
+    name: "Instagram",
+    url: "https://instagram.com",
+    icon: "mdi:instagram"
+  },
+  {
+    name: "YouTube",
+    url: "https://facebook.com",
+    icon: "mdi:youtube"
+  }
+]
 ---
 <footer class="bg-black text-white p-5 border-t-1 border-gray-300">
 <div class="flex items-center justify-center">
-<p class="pl-12 text-1xl">Email us today to inquire about Rhythm Nation dlavoie@bellsouth.net 404-886-5517 or Call East Coast Entertainment 404-351-2263</p>
+<p class="text-center md:text-center pl-12 text-1xl">Email us today to inquire about Rhythm Nation dlavoie@bellsouth.net 404-886-5517 or Call East Coast Entertainment 404-351-2263</p>
 </div>
+<div class=" flex items-center justify-center">
+      <ul class="flex flex-wrap gap-2 mb-1">
+        {socialLinks.map((link) => (
+        <li>
+          <a href={link.url}
+             class="flex items-center gap-2 text-lg hover:text-teal-500">
+              <Icon name={link.icon} class="w-16 h-16 p-2" />
+             </a>
+        </li>
+        ))}
+      </ul>
+    </div>
 <div class="flex items-center justify-center">
   <h1>&copy; {year} Copyright {companyName}, All Rights Reserved.</h1>
 </div>
 </footer>
+
+
+

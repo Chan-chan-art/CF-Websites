@@ -1,8 +1,6 @@
 ---
 author: dwight-schute
-slug: Collaborations
 categories: ["studio tips"]
-date: 08/10/2021
 featured: false
 image: ./images/Collaborations.avif
 title: Collaborations

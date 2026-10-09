@@ -10,16 +10,9 @@ const posts = await getCollection("post");
 ---
 <!--<Layout title="Blog | Rhythm Nation">-->
  <Main>	
-  <div class="pt-10">
+  <div class="text-center md:text-left pt-10">
 	<H1 text="Rhythm Nation Blog"/>
-  
-  {posts.map(post =>  ( 
-
-    <PostList posts={posts}/>
-
-  
-  ))}
-  
+  <PostList posts={posts}/>
 </div>
 
  </Main>

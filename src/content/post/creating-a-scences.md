@@ -1,8 +1,6 @@
 ---
 author: dwight-schute
-slug: creating a scenes
 categories: ["studio tips"]
-date: 08/10/2021
 featured: false
 image: ./images/Creating a Scenes.avif
 title: Creating A Scences

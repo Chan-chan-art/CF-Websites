@@ -1,8 +1,6 @@
 ---
 author: dwight-schute
-slug: behind-the-scenes-with-our-artist
 categories: ["studio tips"]
-date: 08/10/2021
 featured: false
 image: ./images/Behind the scenes with an artists.avif
 title: Behind The Scenes With Our Artist

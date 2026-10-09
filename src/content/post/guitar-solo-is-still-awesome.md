@@ -1,11 +1,8 @@
 ---
 title: "Guitar Solo Is Still Awesome"
-slug: guitar solo is still awesome
 categories: ["studio tips"]
 featured: false
 image: ./images/guitarist.B83iMcFz_Z4HzxO.webp
-description: "An introductory breakdown of posting data through endpoints"
-date: 10/06/2026
 author: "Jane Doe"
 ---
 Collaboration is a key component of many creative endeavors, and music production is no exception. In fact, collaboration can be essential to the success of a music project, as it allows for the pooling of diverse talents and perspectives to create something truly unique and compelling.
