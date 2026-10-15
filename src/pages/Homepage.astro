@@ -2,12 +2,21 @@
 import Welcome from '../components/Welcome.astro';
 import Layout from '../layouts/Layout.astro';
 import H1 from '../components/H1.astro'
+import H3 from '../components/H3.astro'
+import Button from '../components/starwind/button/Button.astro'
 import Main from '../components/Main.astro'
 import Blogs from '../pages/Blogs.astro'
 export const prerender = true;
 ---
 <Layout title="Blog | Rhythm Nation">
-<div class="text-center md:text-left p-24 pt-10">    
-<H1 text="Rhythm Nation" />
+
+<div class=" text-center md:text-left p-20 pt-10">    
+
+  <H1 text="Rhythm Nation"/>
+  <H3 text="SOUND HAS NO BORDERS" />
+  <p class="border-l-2 border-teal-500 pl-2">A digital stage for global music, cultural deep dives, and curated playlists that cross every meridian.</p>
+  <div class="pt-10">
+  <Button variant="primary">Talk with us</Button>
+  </div>
 </div>
 </Layout>
