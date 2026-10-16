@@ -1,22 +1,140 @@
 ---
 import Welcome from '../components/Welcome.astro';
+import { Card, CardContent, CardAction, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/starwind/card";
+import { Button } from "@/components/starwind/button";
+import { Badge } from "@/components/starwind/badge";
 import Layout from '../layouts/Layout.astro';
 import H1 from '../components/H1.astro'
 import H3 from '../components/H3.astro'
 import Button from '../components/starwind/button/Button.astro'
+
 import Main from '../components/Main.astro'
 import Blogs from '../pages/Blogs.astro'
 export const prerender = true;
+
+import { Icon } from "astro-icon/components"
+  const socialLinks = [
+  {
+    name: "Facebook",
+    url: "https://facebook.com",
+    icon: "mdi:facebook"
+  },
+  {
+    name: "Instagram",
+    url: "https://instagram.com",
+    icon: "mdi:instagram"
+  },
+  {
+    name: "YouTube",
+    url: "https://facebook.com",
+    icon: "mdi:youtube"
+  }
+]
 ---
 <Layout title="Blog | Rhythm Nation">
-
-<div class=" text-center md:text-left p-20 pt-10">    
+<div class="h-full w-full bg-cover bg-center bg-no-repeat flex flex-col justify-center px-6" 
+     style="background-image: url('./bg.avif');">
+<div class=" text-center md:text-left p-20 pt-10 ">    
 
   <H1 text="Rhythm Nation"/>
   <H3 text="SOUND HAS NO BORDERS" />
-  <p class="border-l-2 border-teal-500 pl-2">A digital stage for global music, cultural deep dives, and curated playlists that cross every meridian.</p>
+  <p class="border-l-2 border-teal-500 pl-4">A digital stage for global music, cultural deep dives, and curated playlists that cross every meridian.</p>
   <div class="pt-10">
+    <div class="pl-2">
   <Button variant="primary">Talk with us</Button>
   </div>
+  <div class="flex flex-row justify-center md:justify-start items-center pt-2">
+    <ul class="flex flex-wrap mb-1 ">
+        {socialLinks.map((link) => (
+        <li>
+          <a href={link.url}
+             class="hover:text-teal-500 transition-colors duration-200">
+              <Icon name={link.icon} class="w-12 h-12 p-2" />
+             </a>
+        </li>
+        ))}
+      </ul>
+    </div>
+  </div>
 </div>
+</div>
+<div class=" text-center md:text-left p-20 pt-10 ">
+<H1 text="Echos From The Field"/>
+<p>"Echoes from the Field" (or "Echoes from the Fields") can refer to several notable works across music, literature, and media:</p>
+
+<div class="grid grid-cols-1 md:grid-cols-3 gap-8 mt-10">
+<Card class="relative mx-auto w-full max-w-sm">
+  <img
+    src="https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=600&h=400&fit=crop"
+    alt="Event cover"
+    class="aspect-video w-full object-cover"
+  />
+  <CardHeader>   
+    <CardTitle>Music</CardTitle>
+    <CardContent>
+      <ul>
+      <li><strong>• Echoes from the Fields:</strong> A release by the Concerned Artists of the Philippines Portland (released October 31, 2025), featuring tracks such as Awit sa Luisita, Hacienda, and Tano.
+      <Badge size="sm" variant="primary" class="ml-2"> Bandcamp</Badge>
+      </li>
+      <li><strong>• "Echoes from the Field":</strong> A song by Kevin Csizi from the album The Spiral Signal, released on June 14, 2026.</li>• "Echoes from the Field": A song by Kevin Csizi from the album The Spiral Signal, released on June 14, 2026.
+      <li><strong>• "Echoes from the Field":</strong> A track by Captain Doofie from the album Fluorescent Beats, released on May 15, 2024.</li>
+      <li><strong>• Echoes from the Fields:</strong> A 2023 music album by Geena B. & Rufus. </li>
+      <Badge size="sm" variant="primary" class="ml-2"> Spotify</Badge>
+      </ul>   
+    </CardContent>
+  </CardHeader>
+  <CardFooter>
+    <Button class="w-full">View Event</Button>
+  </CardFooter>
+</Card>
+
+<Card class="relative mx-auto w-full max-w-sm">
+  <img
+    src="https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=600&h=400&fit=crop"
+    alt="Event cover"
+    class="aspect-video w-full object-cover"
+  />
+  <CardHeader>   
+    <CardTitle>Literature</CardTitle>
+    <CardContent>
+      <ul>
+      <li><strong>• Echoes From the Fields: </strong> : A romantic novel by Michel Aflalo about Esther and Michel in a 1973 Israeli village, and their reunion 20 years later.
+      <Badge size="sm" variant="primary" class="ml-2"> Amazon.com</Badge>
+      </li>
+      <li><strong>• Echoes From the Field (1905):</strong> A spiritual and historical collection featuring writings by Ellen G. White.</li>
+      <Badge size="sm" variant="primary" class="ml-2"> Notion Press</Badge>
+      </ul>   
+    </CardContent>
+  </CardHeader>
+  <CardFooter>
+    <Button class="w-full">View Event</Button>
+  </CardFooter>
+</Card>
+
+<Card class="relative mx-auto w-full max-w-sm">
+  <img
+    src="https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=600&h=400&fit=crop"
+    alt="Event cover"
+    class="aspect-video w-full object-cover"
+  />
+  <CardHeader>   
+    <CardTitle>Media & Industry Series</CardTitle>
+    <CardContent>
+      <ul>
+      <li><strong>• STRYDE’s "Echoes from the Field":</strong> An interview and podcast series exploring seismic exploration campaigns, including a feature with Polaris Seismic CEO Mike Popham.
+      <Badge size="sm" variant="primary" class="ml-2"> STRYDE</Badge>
+      </li>
+    </ul>
+    </CardContent>
+  </CardHeader>
+  <CardFooter>
+    <Button class="w-full">View Event</Button>
+  </CardFooter>
+</Card>
+
+
+
+</div>
+</div>
+
 </Layout>
