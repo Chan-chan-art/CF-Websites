@@ -3,6 +3,7 @@ import Layout from "../layouts/Layout.astro"
 import H1 from "../components/H1.astro"
 import H3 from "../components/H3.astro"
 import { Image } from 'astro:assets';
+import { Video } from '@/components/starwind/video';
 export const prerender = true;
 
 // 1. Your data array (can come from an API, Markdown files, or hardcoded)
@@ -17,22 +18,25 @@ const visibleCount = 3;
 
 ---
 <Layout title="Blog | Rhythm Nation" >
-  <div class="text-center md:text-left bg-black p-14 text-white">
+  <div class="bg-[linear-gradient(rgba(0,0,0,0.5),rgba(0,0,0,0.5)),url('/bg1.avif')] bg-cover bg-center flex items-center justify-center text-white">
+    <div class="md:text-left text-center p-14">
     <H1 text="About Us"/>
     <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mt-10">
     <Image class="rounded-2xl shadow-xl max-w-1xl"
   src="/photo-1507838153414-b4b713384a76.avif" 
-  width={800} 
+  width={1000} 
   height={1000} 
   alt="Rhythm"></Image>
 
-    <p class="text-center md:text-left max-w-4xl text-lg">
+    <p class="text-center text-white md:text-left max-w-4xl text-lg">
      “The absolute best out there! Words can’t describe how fantastic y’all were.   Every song, every dance-it was all amazing! Our guests are still raving!” - Kristen Saban Settas & Adam Settas
       With more than 25years of traveling and entertaining music lovers of all ages, we make it our mission to create an unforgettable event every time we step on stage!
       Pro-Athletes including Brian McCann of the Atlanta Braves, Kevin Butler of the Chicago Bears and Nancy Lopez, LPGA star,  Southeastern Conference Univ of Alabama Football Coach, Nick Saban, Local TV Personalities, Fortune 500 Company CEO’s, Brides, Grooms and top event planners’ all across the country have chosen Rhythm Nation to dazzle their guests and now proudly recommend the band to their colleagues, peers and clients.
       Rhythm Nation performances blend elements of popular, timeless and recognizable musical genres which create spirited events that are enjoyed by all and happily remembered long after the event has concluded.
       Whether entertaining an intimate group of 30 or thrilling a crowd of 300,000, we deliver an energetic, musically exciting and interactive show!
     </p>
+    
+    </div>
     </div>
     </div>
 
@@ -63,22 +67,22 @@ const visibleCount = 3;
     </div>
 
   <div class="w-full text-center md:text-left p-14 bg-slate-100">
-  <div class="pt-12 ml-2">
+  <div class="pt-6 pb-6 ">
   <H1 text="VIDEOS"/>
   </div>
 
-  <div class="grid grid-cols-1 md:grid-cols-2 gap-2">
-  <div class="pl-12 pr-12 pb-12 mt-10">   
-  <video 
-    class="w-full max-w-2xl  aspect-video rounded-lg shadow-lg" 
-    controls 
-    muted 
-    autoplay 
-    loop
-  >
-    <source src="/my-video.mp4" type="video/mp4" />
-    Your browser does not support the video tag.
-  </video>
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
+  <div class="mb-12 mt-1">  
+
+    <Video 
+      src="/videos/55859-504238916_medium.mp4" 
+      autoplay 
+      loop 
+      muted 
+      playsinline
+      preload="metadata"
+      class="w-full max-w-2xl  aspect-video rounded-lg shadow-lg"
+    /> 
 </div>
 
 <div>
