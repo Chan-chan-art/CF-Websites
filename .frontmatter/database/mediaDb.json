@@ -1,1 +1,42 @@
-{}
+{
+  "public": {},
+  "src": {
+    "assets": {
+      "55859-504238916_medium.mp4": {
+        "alt": "",
+        "caption": "How API Works",
+        "title": "API Video"
+      },
+      "api.avif": {
+        "alt": "a test also",
+        "caption": "This is test",
+        "title": "API test"
+      },
+      "image1.avif": {
+        "alt": "also a test",
+        "caption": "This is test",
+        "title": "API Config"
+      },
+      "live.webp": {
+        "alt": "alright..!",
+        "caption": "alright!",
+        "title": "Live Concert"
+      },
+      "mltr.jpg": {
+        "alt": "Pop Rock",
+        "caption": "Soft Rock",
+        "title": "MLTR"
+      },
+      "mltr.webp": {
+        "alt": "Pop Rock",
+        "caption": "Soft Rock",
+        "title": "Michael Learns To Rock"
+      },
+      "musicfestival.avif": {
+        "alt": "wohoop...",
+        "caption": "wohoop",
+        "title": "Live with the band"
+      }
+    }
+  }
+}

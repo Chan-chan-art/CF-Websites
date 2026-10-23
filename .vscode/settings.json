@@ -1,11 +1,10 @@
 {
   "frontMatter.content.pageFolders": [
     {
-      "path": "[[workspace]]/node_modules/yargs-parser"
-    },
-    {
-      "title": "myblogs",
-      "path": "[[workspace]]/node_modules/zwitch"
+      "title": "My Blog Posts",
+      "path": "[[workspace]]/src/content/post"
     }
-  ]
+  ],
+  "[markdown]": {
+  }
 }

@@ -1,9 +1,13 @@
 ---
 title: "Live Music Is Crucial"
-categories: ["studio tips"]
+description: "A quick summary overview of what our artists are working on behind the scenes."
+date: 2026-10-23T12:00:00.000Z
+draft: false
+author: "jane doe"
 featured: false
-image: ./images/Live.webp
-author: "Jane Doe"
+image: "./images/Live.webp"
+tags: ["Design"]
+categories: ["Personal"]
 ---
 Collaboration is a key component of many creative endeavors, and music production is no exception. In fact, collaboration can be essential to the success of a music project, as it allows for the pooling of diverse talents and perspectives to create something truly unique and compelling.
 

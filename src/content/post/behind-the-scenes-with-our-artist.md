@@ -1,9 +1,22 @@
 ---
-author: dwight-schute
-categories: ["studio tips"]
+title: Behind the Scenes with Our Artist
+description: A quick summary overview of what our artists are working on behind the scenes.
+date: 2026-10-23T12:00:00.000Z
+draft: false
+author: Changest Tubay
 featured: false
 image: ./images/Behind the scenes with an artists.avif
-title: Behind The Scenes With Our Artist
+tags:
+  - Baron
+  - kim
+  - Maja
+  - Piolo
+  - Katherine
+categories:
+  - action
+  - drama
+keywords: The Scenes
+preview: ../../assets/background.svg
 ---
 Collaboration is a key component of many creative endeavors, and music production is no exception. In fact, collaboration can be essential to the success of a music project, as it allows for the pooling of diverse talents and perspectives to create something truly unique and compelling.
 

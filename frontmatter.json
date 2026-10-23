@@ -1,5 +1,5 @@
 {
-  "$schema": "https://frontmatter.codes/frontmatter.schema.json",
+  "$schema": "https://frontmatter.codes",
   "frontMatter.content.pageFolders": [
     {
       "title": "My Blog Posts",
@@ -30,11 +30,6 @@
           "isPublishDate": true
         },
         {
-          "title": "Content preview",
-          "name": "preview",
-          "type": "image"
-        },
-        {
           "title": "Is in draft",
           "name": "draft",
           "type": "draft"
@@ -48,6 +43,31 @@
           "title": "Categories",
           "name": "categories",
           "type": "categories"
+        },
+        {
+          "title": "Author Name",
+          "name": "author",
+          "type": "string",
+          "default": "Your Name"
+        },
+        {
+          "title": "Featured Post",
+          "name": "featured",
+          "type": "boolean",
+          "default": false
+        },
+        {
+          "title": "Featured Image (Website Only)",
+          "name": "image",
+          "type": "image",
+          "fileExtensions": [".jpg", ".jpeg", ".png", ".webp", ".avif"]
+        },
+        {
+          "title": "Content Preview Image (Dashboard Only)",
+          "name": "preview",
+          "type": "image",
+          "isPreviewImage": true,
+          "fileExtensions": [".jpg", ".jpeg", ".png", ".webp", ".avif"]
         }
       ]
     }
@@ -58,5 +78,22 @@
     "path": "src/assets",
     "relative": true
   },
-  "frontMatter.git.enabled": true
+  "frontMatter.git.enabled": true,
+  "frontMatter.taxonomy.tags": [
+    "Development",
+    "Astro",
+    "JavaScript",
+    "Design",
+    "Tutorial"
+  ],
+  "frontMatter.taxonomy.categories": [
+    "Coding",
+    "Web Design",
+    "Tech News",
+    "Personal"
+  ],
+  "frontMatter.dashboard.content.card.fields.description": "description",
+  "frontMatter.dashboard.content.card.fields.title": "title",
+  "frontMatter.media.pasteBehavior": "auto",
+  "frontMatter.media.pasteFolder": "[[workspace]]/src/assets"
 }
