@@ -51,6 +51,12 @@
           "default": "Your Name"
         },
         {
+          "title": "Youtube Video URL (Optional)",
+          "name": "videoUrl",
+          "type": "string",
+          "single": true
+        },
+        {
           "title": "Featured Post",
           "name": "featured",
           "type": "boolean",
@@ -60,14 +66,26 @@
           "title": "Featured Image (Website Only)",
           "name": "image",
           "type": "image",
-          "fileExtensions": [".jpg", ".jpeg", ".png", ".webp", ".avif"]
+          "fileExtensions": [
+            ".jpg",
+            ".jpeg",
+            ".png",
+            ".webp",
+            ".avif"
+          ]
         },
         {
           "title": "Content Preview Image (Dashboard Only)",
           "name": "preview",
           "type": "image",
           "isPreviewImage": true,
-          "fileExtensions": [".jpg", ".jpeg", ".png", ".webp", ".avif"]
+          "fileExtensions": [
+            ".jpg",
+            ".jpeg",
+            ".png",
+            ".webp",
+            ".avif"
+          ]
         }
       ]
     }
@@ -95,5 +113,12 @@
   "frontMatter.dashboard.content.card.fields.description": "description",
   "frontMatter.dashboard.content.card.fields.title": "title",
   "frontMatter.media.pasteBehavior": "auto",
-  "frontMatter.media.pasteFolder": "[[workspace]]/src/assets"
+  "frontMatter.media.pasteFolder": "[[workspace]]/src/assets",
+  "frontMatter.contentHealth.enabled": true,
+  "frontMatter.taxonomy.seoTitleLength": 60,
+  "frontMatter.taxonomy.seoDescriptionLength": 160,
+  "frontMatter.contentHealth.minReadability": 60,
+  "frontMatter.framework.startCommand": "npm run dev",
+  "frontMatter.templates.prefix": "{{date|yyyy-MM-dd}}",
+  "frontMatter.content.snippets": {}
 }

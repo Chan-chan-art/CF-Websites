@@ -1,0 +1,51 @@
+---
+// src/layouts/MarkdownPostLayout.astro
+
+// 1. Grab the frontmatter details directly from your Markdown file
+const { frontmatter } = Astro.props;
+---
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{frontmatter.title}</title>
+    <style>
+      /* Clean, modern typography styles for your text */
+      body { 
+        font-family: system-ui, -apple-system, sans-serif; 
+        max-width: 680px; 
+        margin: 4rem auto; 
+        padding: 0 1.5rem; 
+        line-height: 1.7; 
+        color: #1f2937;
+      }
+      h1 { font-size: 2.5rem; margin-bottom: 0.5rem; color: #111827; }
+      .meta { font-size: 0.9rem; color: #6b7280; margin-bottom: 2rem; }
+      hr { border: 0; border-top: 1px solid #e5e7eb; margin: 2rem 0; }
+      
+      /* Styles specifically targeting your markdown text formatting */
+      article :global(p) { margin-bottom: 1.5rem; }
+      article :global(h3) { font-size: 1.5rem; margin-top: 2rem; color: #111827; }
+      article :global(ul) { padding-left: 1.5rem; margin-bottom: 1.5rem; }
+      article :global(li) { margin-bottom: 0.5rem; }
+    </style>
+  </head>
+  <body>
+    <article>
+      <!-- Displays your Post Title -->
+      <h1>{frontmatter.title}</h1>
+      
+      <!-- Displays your Author Name and Date -->
+      <div class="meta">
+        Published by {frontmatter.author} on {new Date(frontmatter.pubDate).toLocaleDateString()}
+      </div>
+      
+      <hr />
+      
+      <!-- This vital slot tag injects your handwritten Markdown text right here -->
+      <slot />
+      
+    </article>
+  </body>
+</html>

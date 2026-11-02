@@ -7,15 +7,40 @@
         "caption": "How API Works",
         "title": "API Video"
       },
+      "actions star.avif": {
+        "alt": "Live Action Scenes",
+        "caption": "The Scenes",
+        "title": "Behind the Camera"
+      },
       "api.avif": {
         "alt": "a test also",
         "caption": "This is test",
         "title": "API test"
       },
+      "camera.avif": {
+        "alt": "Cut the Scenes",
+        "caption": "Camera Action",
+        "title": "Take 1"
+      },
+      "computer generated in making movies.avif": {
+        "alt": "AdVance Tech. in Filmiing a Movie",
+        "caption": "Advance Filming",
+        "title": "Computer Generated in making a Movie"
+      },
+      "gangsta.avif": {
+        "alt": "yusuopp",
+        "caption": "wazzup",
+        "title": "gangstamen"
+      },
       "image1.avif": {
         "alt": "also a test",
         "caption": "This is test",
         "title": "API Config"
+      },
+      "in_atlantic_city_ormer_locklear_of_locklear's_flying_circus_clings_to_one_plane_waiting_for_a_2nd_plane_trailing_a_rope_ladder.jpg": {
+        "alt": "Fly",
+        "caption": "Flying Above",
+        "title": "Locklear of Locklear's Flying"
       },
       "live.webp": {
         "alt": "alright..!",
@@ -36,6 +61,41 @@
         "alt": "wohoop...",
         "caption": "wohoop",
         "title": "Live with the band"
+      },
+      "rapyoo.avif": {
+        "alt": "yooyoo",
+        "caption": "yoo",
+        "title": "repaps"
+      },
+      "smokeng.avif": {
+        "alt": "pa more",
+        "caption": "katol",
+        "title": "weeds"
+      },
+      "stage1.avif": {
+        "alt": "Stage Play",
+        "caption": "Stage Play",
+        "title": "Stage Play 1"
+      },
+      "stage2.avif": {
+        "alt": "Stage Play",
+        "caption": "Stage Play 2",
+        "title": "Stage Play 2"
+      },
+      "stage3.avif": {
+        "alt": "Stage Play",
+        "caption": "Stage Play 3",
+        "title": "Stage Play 3"
+      },
+      "stunt_1298471366.jpg": {
+        "alt": "Fantastic stunt",
+        "caption": "Awesome Stunt",
+        "title": "Mechanical Stunt"
+      },
+      "stunt_pyrotechnics_luc_viatour.jpg": {
+        "alt": "Though its dangerous",
+        "caption": "Amazing Stunt",
+        "title": "Pyrotechnics Stunt"
       }
     }
   }

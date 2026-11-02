@@ -17,4 +17,5 @@ export default defineConfig({
   },
 
   output: 'server',
+  site: 'https://yourdomain.com', // Change this to your actual deployed website URL
 });
