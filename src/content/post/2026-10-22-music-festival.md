@@ -12,7 +12,6 @@ tags:
   - wolfgang
   - rico blanco
 categories:
-  - Coding
   - Opm artist
 image: ../../assets/MusicFestival.avif
 preview: ../../assets/Live.webp

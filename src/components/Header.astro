@@ -1,15 +1,34 @@
 ---
 import { Image } from 'astro:assets';
+
+// 1. Capture the active route pathname
+const pathname = Astro.url.pathname;
+
+// 2. Clean route-matching helper function
+const isActive = (path: string) => {
+  if (path === '/' && pathname === '/') return true;
+  if (path !== '/' && pathname.startsWith(path)) return true;
+  return false;
+};
+
+// 3. Centralized link map matching your exact paths
+const navLinks = [
+  { name: "Home", href: "/" },
+  { name: "Blog", href: "/Blogs" },
+  { name: "Newsletter", href: "/subscribe" },
+  { name: "Playlists", href: "/playlists" },
+  { name: "Contact", href: "/contact" },
+];
 ---
 
-<header class="px-6 md:px-20 py-4 bg-teal-100 shadow-md relative">
+<header class="px-6 md:px-20 py-4 bg-teal-100 shadow-md relative sticky top-0 z-50">
   <div class="mx-auto flex max-w-7xl items-center justify-between">
     
     <!-- Logo and site title -->
     <div class="flex-shrink-0">
       <a href="/" class="flex items-center gap-x-4">
         <Image src="/hb.webp" width={60} height={60} alt="Heartbeat Icon" class="rounded-2xl object-cover" format="webp" />
-        <span class="uppercase font-bold p-4">Blog</span>
+        <span class="uppercase font-bold p-4 text-teal-950">Rhythm Nation</span>
       </a>
     </div>
 
@@ -32,13 +51,31 @@ import { Image } from 'astro:assets';
       /* Desktop Layout Override */
       md:static md:h-auto md:w-auto md:p-0 md:shadow-none md:flex-row md:gap-x-8 md:translate-x-0 md:bg-transparent md:flex
     ">
-      <li><a href="/Homepage" class="text-teal-900 font-bold hover:text-teal-500 block text-lg md:text-base border-b border-teal-200 pb-2 md:border-none md:pb-0">Home</a></li>
-      <li><a href="/About" class="text-teal-900 font-bold hover:text-teal-500 block text-lg md:text-base border-b border-teal-200 pb-2 md:border-none md:pb-0">About</a></li> 
-      <li><a href="/" class="text-teal-900 font-bold hover:text-teal-500 block text-lg md:text-base border-b border-teal-200 pb-2 md:border-none md:pb-0">Blog</a></li>
+      {navLinks.map((link) => {
+        const active = isActive(link.href);
+        return (
+          <li>
+            <a 
+              href={link.href} 
+              class={`block text-lg md:text-base border-b border-teal-200 pb-2 md:border-none md:pb-0 font-bold transition-colors duration-150 relative md:py-1 ${
+                active 
+                  ? "text-teal-600 md:text-teal-950 font-black" 
+                  : "text-teal-900 hover:text-teal-500"
+              }`}
+            >
+              {link.name}
+              {/* Subtle underline tracker under active nav item on desktop viewports */}
+              {active && (
+                <span class="hidden md:block absolute bottom-0 left-0 w-full h-0.5 bg-teal-900 rounded-full" />
+              )}
+            </a>
+          </li>
+        );
+      })}
     </ul>
 
     <!-- Dark Overlay Background -->
-    <label for="menu-toggle" class="fixed inset-0 bg-opacity-40 z-30 hidden peer-checked:block md:peer-checked:hidden"></label>
+    <label for="menu-toggle" class="fixed inset-0 bg-zinc-950/40 bg-opacity-40 z-30 hidden peer-checked:block md:peer-checked:hidden"></label>
 
   </div>
 </header>

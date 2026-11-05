@@ -1,0 +1,181 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Main from "../components/Main.astro";
+import H1 from "../components/H1.astro";
+---
+
+<Layout title="Contact Us | Rhythm Nation">
+  <Main>
+    <div class="max-w-6xl mx-auto pt-16 pb-24 px-4">
+      
+      <!-- Page Title -->
+      <div class="text-center max-w-2xl mx-auto mb-16">
+        <H1 text="Get in Touch" />
+        <p class="text-zinc-500 text-xl mt-4">
+          Have a question about music production, want to pitch a guest article, or explore partnership opportunities? Drop a line below!
+        </p>
+      </div>
+
+      <!-- Split Grid Layout -->
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
+        
+        <!-- Left Column: Branding Channels Info (4 Cols) -->
+        <div class="lg:col-span-4 space-y-8">
+          <div class="bg-zinc-50 border border-zinc-200 rounded-2xl p-6 shadow-sm">
+            <h3 class="text-xs uppercase font-bold tracking-widest text-zinc-400 mb-4">Direct Channel</h3>
+            <p class="text-zinc-800 text-lg font-medium select-all">hello@rhythmnation.com</p>
+            <p class="text-zinc-400 text-sm mt-1">Expected reply window: 24–48 hours</p>
+          </div>
+
+          <div class="bg-zinc-50 border border-zinc-200 rounded-2xl p-6 shadow-sm">
+            <h3 class="text-xs uppercase font-bold tracking-widest text-zinc-400 mb-4">The Rhythm Socials</h3>
+            <ul class="space-y-3 font-medium text-zinc-700">
+              <li>
+                <a href="https://youtube.com" target="_blank" rel="noreferrer" class="hover:text-red-600 transition-colors flex items-center gap-2">
+                  <span>📺</span> YouTube
+                </a>
+              </li>
+              <li>
+                <a href="https://instagram.com" target="_blank" rel="noreferrer" class="hover:text-pink-600 transition-colors flex items-center gap-2">
+                  <span>📸</span> Instagram
+                </a>
+              </li>
+              <li>
+                <a href="https://soundcloud.com" target="_blank" rel="noreferrer" class="hover:text-orange-500 transition-colors flex items-center gap-2">
+                  <span>🎵</span> SoundCloud
+                </a>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Right Column: Interactive Form Core (8 Cols) -->
+        <div class="lg:col-span-8 bg-white border border-zinc-200 rounded-3xl p-8 md:p-10 shadow-xl relative overflow-hidden min-h-[500px]">
+          
+          <!-- Form State Block -->
+          <div id="contact-form-container" class="transition-all duration-500 ease-in-out opacity-100 scale-100">
+            <form id="contact-form" class="space-y-6">
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div>
+                  <label for="contact-name" class="block text-zinc-700 text-sm font-semibold mb-2">Full Name</label>
+                  <input 
+                    type="text" 
+                    id="contact-name" 
+                    required
+                    placeholder="Alex Smith" 
+                    class="w-full px-5 py-3 border border-slate-300 rounded-xl shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 text-zinc-800 bg-white"
+                  />
+                </div>
+                <div>
+                  <label for="contact-email" class="block text-zinc-700 text-sm font-semibold mb-2">Email Address</label>
+                  <input 
+                    type="email" 
+                    id="contact-email" 
+                    required
+                    placeholder="alex@example.com" 
+                    class="w-full px-5 py-3 border border-slate-300 rounded-xl shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 text-zinc-800 bg-white"
+                  />
+                </div>
+              </div>
+
+              <div>
+                <label for="contact-subject" class="block text-zinc-700 text-sm font-semibold mb-2">Subject</label>
+                <input 
+                  type="text" 
+                  id="contact-subject" 
+                  required
+                  placeholder="Sponsorship Proposal / Article Feedback" 
+                  class="w-full px-5 py-3 border border-slate-300 rounded-xl shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 text-zinc-800 bg-white"
+                />
+              </div>
+
+              <div>
+                <label for="contact-message" class="block text-zinc-700 text-sm font-semibold mb-2">Your Message</label>
+                <textarea 
+                  id="contact-message" 
+                  required
+                  rows="5"
+                  placeholder="Tell us what's on your mind..." 
+                  class="w-full px-5 py-3 border border-slate-300 rounded-xl shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 text-zinc-800 bg-white"
+                ></textarea>
+              </div>
+
+              <button 
+                type="submit" 
+                class="w-full md:w-auto px-8 py-4 bg-zinc-900 hover:bg-zinc-800 text-white font-semibold rounded-xl shadow-lg transition-colors duration-200 cursor-pointer text-center text-lg inline-block"
+              >
+                Send Message
+              </button>
+            </form>
+          </div>
+
+          <!-- Success State Block (Initially Invisible) -->
+          <div 
+            id="contact-success-container" 
+            class="hidden opacity-0 max-h-0 pointer-events-none transition-all duration-500 ease-in-out text-center absolute inset-0 flex flex-col items-center justify-center p-8 bg-white"
+          >
+            <div class="w-16 h-16 bg-indigo-100 text-indigo-600 rounded-full flex items-center justify-center mb-6 shadow-inner animate-bounce">
+              <svg xmlns="http://w3.org" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor" class="w-8 h-8">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M6 12L3.269 3.126A59.768 59.768 0 0121.485 12 59.77 59.77 0 013.27 20.876L5.999 12zm0 0h7.5" />
+              </svg>
+            </div>
+            <h2 class="text-3xl text-zinc-900 font-bold mb-2">Message Dispatched!</h2>
+            <p class="text-zinc-500 text-lg max-w-sm mx-auto">
+              Thanks for reaching out, <span id="sender-name" class="font-semibold text-zinc-800"></span>. We've captured your note and will review it shortly.
+            </p>
+            <a href="/blog" class="inline-block mt-8 px-6 py-2.5 border border-zinc-300 text-zinc-600 rounded-xl hover:bg-zinc-100 transition-colors font-medium">
+              Back to Blog Feed
+            </a>
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+  </Main>
+</Layout>
+
+<script>
+  const form = document.getElementById("contact-form") as HTMLFormElement | null;
+  const formContainer = document.getElementById("contact-form-container");
+  const successContainer = document.getElementById("contact-success-container");
+  const senderNameSpan = document.getElementById("sender-name");
+
+  if (form && formContainer && successContainer && senderNameSpan) {
+    form.addEventListener("submit", (e) => {
+      e.preventDefault();
+
+      const nameInput = document.getElementById("contact-name") as HTMLInputElement;
+      const emailInput = document.getElementById("contact-email") as HTMLInputElement;
+      const subjectInput = document.getElementById("contact-subject") as HTMLInputElement;
+      const messageInput = document.getElementById("contact-message") as HTMLTextAreaElement;
+
+      const name = nameInput.value.trim();
+      
+      // Console trace log for verifying inputs during development local testing
+      console.log({
+        name,
+        email: emailInput.value.trim(),
+        subject: subjectInput.value.trim(),
+        message: messageInput.value.trim()
+      });
+
+      senderNameSpan.textContent = name;
+
+      // Smooth state swap transitions
+      formContainer.classList.add("opacity-0", "scale-95", "pointer-events-none");
+      
+      setTimeout(() => {
+        formContainer.classList.add("hidden");
+        
+        successContainer.classList.remove("hidden", "pointer-events-none");
+        successContainer.classList.add("max-h-full");
+        
+        setTimeout(() => {
+          successContainer.classList.add("opacity-100");
+        }, 50);
+      }, 500);
+    });
+  }
+</script>

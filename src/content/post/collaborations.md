@@ -1,13 +1,15 @@
 ---
-title: "Collaborations"
-description: "A quick summary overview of what our artists are working on behind the scenes."
+title: Collaborations
+description: A quick summary overview of what our artists are working on behind the scenes.
 date: 2026-10-23T12:00:00.000Z
 draft: false
-author: "dwight-schute"
+author: dwight-schute
 featured: false
-image: "./images/Collaborations.avif"
-tags: ["Design"]
-categories: ["Personal"]
+image: ./images/Collaborations.avif
+tags:
+  - Design
+categories:
+  - Collaborations
 ---
 The post "Behind-the-scenes with our artists" is an article written under the author alias dwight-schrute, published on January 1, 2025. It serves as a sample post within the Rhythm Nation Blog template.
 

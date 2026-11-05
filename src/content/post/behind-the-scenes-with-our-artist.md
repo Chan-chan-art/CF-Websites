@@ -13,8 +13,7 @@ tags:
   - Piolo
   - Katherine
 categories:
-  - action
-  - drama
+  - Shooting
 keywords: The Scenes
 preview: ../../assets/background.svg
 ---

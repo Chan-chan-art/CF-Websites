@@ -1,13 +1,15 @@
 ---
-title: "Gear Is Insanely Expensive"
-description: "A quick summary overview of what our artists are working on behind the scenes."
+title: Gear Is Insanely Expensive
+description: A quick summary overview of what our artists are working on behind the scenes.
 date: 2026-10-23T12:00:00.000Z
 draft: false
-author: "jane doe"
+author: jane doe
 featured: false
-image: "./images/gear.CFQSK5TA_S61wQ.webp"
-tags: ["Design"]
-categories: ["Personal"]
+image: ./images/gear.CFQSK5TA_S61wQ.webp
+tags:
+  - Design
+categories:
+  - Gear
 ---
 
 Collaboration is a key component of many creative endeavors, and music production is no exception. In fact, collaboration can be essential to the success of a music project, as it allows for the pooling of diverse talents and perspectives to create something truly unique and compelling.

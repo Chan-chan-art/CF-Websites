@@ -13,9 +13,6 @@ tags:
   - Dev Community
 categories:
   - blog post
-  - Personal
-  - task item
-  - user note
 preview: ../../assets/api.avif
 keywords:
   - First API Post

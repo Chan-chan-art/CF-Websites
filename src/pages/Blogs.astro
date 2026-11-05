@@ -1,21 +1,41 @@
 ---
-import { getCollection } from "astro:content"
-import H1 from "../components/H1.astro"
-import Main from "../components/Main.astro"
-import PostList from "../components/PostList.astro"
-import Layout from "../layouts/Layout.astro"
+import { getCollection } from "astro:content";
+import H1 from "../components/H1.astro";
+import Main from "../components/Main.astro";
+import PostList from "../components/PostList.astro";
+import SearchBar from "../components/SearchBar.astro";
+import Layout from "../layouts/Layout.astro";
 
 const posts = await getCollection("post");
-
 ---
-<!--<Layout title="Blog | Rhythm Nation">-->
- <Main>	
-  <div class="text-center md:text-left pt-10">
-	<H1 text="Rhythm Nation Blog"/>
-  <div class="mt-10">
-  <PostList posts={posts}/>
-  </div>
-</div>
+<Layout title="Blog | Rhythm Nation" >
+  <Main>	
+      <div class="text-center md:text-left pt-10">
+      
+      <!-- ✅ THIS SECTION HANDLES ONLY THE SEARCH BAR AND TITLE LAYOUT -->
+      
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mt-10 items-center">
 
- </Main>
-<!--</Layout>-->
+        <!-- Blog Title -->
+        <H1 text="Rhythm Nation Blog"/>
+        
+        <!-- Search Box: Anchored at the top-left on desktop screens -->
+        <div class="w-full max-w-md">
+          <SearchBar />
+        </div>
+        
+      </div>
+
+      <!-- Hidden Fallback Message Container -->
+      <div id="no-results-message" class="hidden opacity-0 transition-opacity duration-500 ease-in-out w-full text-center py-12">
+        <p class="text-zinc-500 text-2xl font-medium">No articles match your search criteria.</p>
+        <p class="text-zinc-400 text-lg mt-2">Try checking your spelling or looking for different keywords.</p>
+      </div>
+
+      <div class="mt-10">
+        <PostList posts={posts}/>
+      </div>
+      
+    </div>
+  </Main>
+</Layout>

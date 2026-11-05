@@ -1,0 +1,241 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Main from "../components/Main.astro";
+import H1 from "../components/H1.astro";
+
+// Data Structure (Completely independent from external image fetch restrictions)
+const playlists = [
+  {
+    title: "Skusta Clee - Since Day One ft. Flow G",
+    description: "Official music video stream direct from the Panty Droppaz League artist channel.",
+    category: "Trending Track",
+    watchUrl: "https://www.youtube.com/watch?v=T8DLCWW6EpY" 
+  },
+  {
+    title: "Lo-Fi Chill Beats for Studying & Relaxation",
+    description: "Curated playlist of lo-fi chill beats to help you focus, relax, and vibe while studying or working.",
+    category: "Chill Vibes",
+    watchUrl: "https://youtu.be/CFGLoQIhmow?si=WOza8ZoTIBNtXHrm" 
+  },
+  {
+    title: "Top 50 Global Hits - Spotify Playlist",
+    description: "The latest and greatest hits from around the world, updated weekly on Spotify.",
+    category: "Global Hits",
+    watchUrl: "https://open.spotify.com/playlist/37i9dQZF1DXcBWIGoYBM5M" 
+  },
+  {
+    title: "OPM Trending Now 2026",
+    description: "Looking for your next favorite OPM songs? Dive into OPM Trending Now 2026, a fresh mix of popular Filipino music, catchy OPM hits, and feel good melodies that deserve a spot on your playlist.",
+    category: "OPM Hits",
+    watchUrl: "https://youtu.be/FMH1SRRAceE?si=-5J7-tdRn6hEDNPM" 
+  },
+];
+
+function getYouTubeVideoId(url:string) {
+  try {
+    const parsedUrl = new URL(url);
+    if (parsedUrl.hostname === "youtu.be") {
+      return parsedUrl.pathname.slice(1);
+    }
+    return parsedUrl.searchParams.get("v") || "";
+  } catch {
+    return "";
+    }
+  }
+
+function getSpotifyEmbedUrl(url: string) {
+  if (url.includes('://spotify.com')) {
+    // 1. Break the URL string apart right at the path indicator
+    const parts = url.split('/playlist/');
+    const rightSide = parts[1]; // Grabs everything after '/playlist/'
+    
+    // 2. Safely clean out any query arguments at the end (like ?si=...)
+    const playlistId = rightSide.split('?')[0];
+    
+    // 3. Assemble the absolute secure embed URL path
+    return `https://spotify.com{playlistId}`;
+  }
+  return '';
+}
+
+const tools = [
+  {
+    name: "Ableton Live 12",
+    category: "Software",
+    description: "The premier digital audio workstation (DAW) for fast, rhythmic electronic music creation and live sequencing.",
+    link: "https://ableton.com",
+    badge: "Essential"
+  },
+  {
+    name: "Focusrite Scarlett 2i2",
+    category: "Hardware",
+    description: "The gold-standard compact audio interface for recording ultra-crisp studio monitors and high-impedance headphones.",
+    link: "https://focusrite.com",
+    badge: "Best Value"
+  },
+  {
+    name: "Splice Sounds",
+    category: "Samples",
+    description: "Millions of royalty-free drum loops, synth stabs, and one-shots to jumpstart your track creation workflow.",
+    link: "https://splice.com",
+    badge: "Recommended"
+  }
+];
+---
+
+<Layout title="Curated Resources & Playlists | Rhythm Nation">
+  <Main>
+    <div class="max-w-6xl mx-auto pt-16 pb-24 px-4">
+      
+      <!-- Header -->
+      <div class="text-center max-w-2xl mx-auto mb-16">
+        <H1 text="The Rhythm Nation Vault" />
+        <p class="text-zinc-500 text-xl mt-4">
+          A hand-picked collection of audio gear, production tutorials, and sonic soundscapes curated to help you create and listen with intention.
+        </p>
+      </div>
+
+      <!-- SECTION 1: Video Guides Section (100% CSS Driven - Can Never Break) -->
+      <section class="mb-20">
+        <h2 class="text-3xl font-bold text-zinc-800 mb-8 border-b border-zinc-100 pb-4 flex items-center gap-3">
+          <span>📺</span> Featured Video Guides & Streams
+        </h2>
+      
+  <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+  {playlists.map((playlist) => (
+    <div class="bg-white border border-zinc-200 rounded-3xl p-6 shadow-sm hover:shadow-md transition-shadow duration-200 flex flex-col justify-between">
+      
+      <!-- Video Metadata Details -->
+      <div class="mb-4">
+        <div class="inline-block text-xs uppercase font-bold tracking-widest text-indigo-600 bg-indigo-50 border border-indigo-100 px-2.5 py-1 rounded-md mb-3">
+          {playlist.category}
+        </div>
+        <h3 class="text-2xl font-bold text-zinc-900 mb-2">{playlist.title}</h3>
+        <p class="text-zinc-500 text-lg">{playlist.description}</p>
+      </div>
+      
+      <!-- ✅ Player Card Container with relative positioning for absolute child layers -->
+      <div class="player-card relative w-full aspect-video rounded-xl bg-gradient-to-br from-zinc-900 via-slate-800 to-zinc-900 border border-zinc-700 overflow-hidden group cursor-pointer" data-player-card>
+
+        <!-- Center Audio Play Icon Interface Overlay Layer -->
+        <div class="absolute inset-0 flex flex-col items-center justify-center gap-3 z-20">
+          <div class="w-16 h-16 bg-red-600 group-hover:bg-red-700 text-white rounded-full flex items-center justify-center shadow-xl group-hover:scale-110 transition-all duration-300">
+            <!-- ✅ Fixed typo: Changed getYoutTubeVideoId to getYouTubeVideoId -->
+            <button 
+              type="button" 
+              class="play-button flex items-center justify-center w-full h-full cursor-pointer text-white"
+              data-play-video
+              data-video-id={getYouTubeVideoId(playlist.watchUrl)}
+            >
+              <svg xmlns="http://w3.org" fill="currentColor" viewBox="0 0 24 24" class="w-8 h-8 ml-0.5">
+                <path d="M8 5v14l11-7z" />
+              </svg>
+            </button>
+          </div>
+          <span class="text-zinc-400 group-hover:text-white font-medium tracking-wide text-sm transition-colors duration-200">
+            Launch Track Player
+          </span>
+        </div>
+
+        <!-- Premium Embedded Video Frame (Hidden initially until active trigger event) -->
+        <iframe 
+          class="hidden absolute inset-0 w-full h-full z-30 rounded-xl bg-gradient-to-br from-zinc-900 via-emerald-950 to-zinc-900 border-emerald-800/40 bg-gradient-to-br from-zinc-900 via-red-950 to-zinc-900 border-red-900/40"
+
+          data-video-frame
+          title={`Play ${playlist.title}`}
+          src=""
+          allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" 
+          allowfullscreen
+        ></iframe>
+
+        <!-- Stylized Abstract Audio Wave Decoration Lines Layer -->
+        <div class="absolute inset-0 opacity-10 flex items-center justify-around px-12 pointer-events-none select-none z-10">
+          <div class="w-1 bg-white h-24 rounded-full group-hover:h-32 transition-all duration-500"></div>
+          <div class="w-1 bg-white h-12 rounded-full group-hover:h-20 transition-all duration-500 delay-75"></div>
+          <div class="w-1 bg-white h-36 rounded-full group-hover:h-44 transition-all duration-500 delay-100"></div>
+          <div class="w-1 bg-white h-16 rounded-full group-hover:h-28 transition-all duration-500 delay-75"></div>
+          <div class="w-1 bg-white h-28 rounded-full group-hover:h-36 transition-all duration-500"></div>
+        </div>
+
+        <!-- Subtle Hover Ambient Glow Tint Layer -->
+        <div class="absolute inset-0 bg-indigo-600/0 group-hover:bg-indigo-600/10 transition-colors duration-300 z-10"></div>
+        
+        <!-- Lower Right Context External Target Link Tag -->
+        <div class="absolute bottom-4 right-4 bg-zinc-900/80 text-zinc-300 px-3 py-1.5 rounded-lg text-sm font-medium backdrop-blur-md border border-zinc-700/50 z-20">
+          <a href={playlist.watchUrl} target="_blank" rel="noopener noreferrer" class="open-video hover:text-white transition-colors">
+            Open Video ↗
+          </a>
+        </div>
+
+      </div> <!-- 👈 Closed player-card container correctly -->
+
+    </div> <!-- 👈 Closed main loop mapping card wrapper correctly -->
+  ))}
+</div>
+</section>
+
+      <!-- SECTION 2: Production Toolkit & Gear -->
+      <section>
+        <h2 class="text-3xl font-bold text-zinc-800 mb-8 border-b border-zinc-100 pb-4 flex items-center gap-3">
+          <span>🎛️</span> Audio Production Resources
+        </h2>
+        
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+          {tools.map((tool) => (
+            <div class="bg-zinc-50 border border-zinc-200 rounded-2xl p-6 shadow-sm flex flex-col justify-between hover:border-zinc-300 transition-colors duration-200">
+              <div>
+                <div class="flex items-center justify-between mb-4">
+                  <span class="text-xs uppercase font-bold tracking-widest text-zinc-400 bg-zinc-200/50 px-2.5 py-1 rounded-md">
+                    {tool.category}
+                  </span>
+                  <span class="text-xs font-semibold text-indigo-600 bg-indigo-50 border border-indigo-100 px-2.5 py-1 rounded-full">
+                    {tool.badge}
+                  </span>
+                </div>
+                <h3 class="text-xl font-bold text-zinc-900 mb-2">{tool.name}</h3>
+                <p class="text-zinc-500 text-base leading-relaxed mb-6">{tool.description}</p>
+              </div>
+              
+              <a 
+                href={tool.link} 
+                target="_blank" 
+                rel="noopener noreferrer" 
+                class="inline-flex items-center justify-center gap-2 w-full py-3 bg-white border border-zinc-300 hover:bg-zinc-100 text-zinc-700 font-medium rounded-xl transition-colors duration-150 shadow-sm"
+              >
+                Explore Tool
+                <svg xmlns="http://w3.org" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-4 h-4">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 6H5.25A2.25 2.25 0 003 8.25v10.5A2.25 2.25 0 005.25 21h10.5A2.25 2.25 0 0018 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25" />
+                </svg>
+              </a>
+            </div>
+          ))}
+        </div>
+      </section>
+
+    </div>
+  </Main>
+</Layout>
+
+<script>
+
+  document.querySelectorAll("[data-play-video]").forEach((button) => {
+
+    button.addEventListener("click", () => {
+      const card = button.closest("[data-player-card]");
+      const iframe = card?.querySelector("[data-video-frame]");
+      const videoId = button.getAttribute("data-video-id");
+
+      if (!iframe || !videoId) return;
+      iframe.setAttribute("src",
+
+      `https:/www.youtube-nocookie.com/embed/${videoId}?autoplay=1&playsinline=1`);
+
+      iframe.classList.remove("hidden");
+
+      button.classList.add("hidden");
+
+    });
+  });
+
+</script>
+

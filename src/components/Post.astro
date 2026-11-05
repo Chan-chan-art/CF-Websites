@@ -9,7 +9,8 @@ type Props = {
 const { post } = Astro.props;
 ---
 
-<article>
+<!-- ✅ Uses transition-all with duration-300 for a crisp fade and layout rearrangement -->
+<article class="post max-h-[1000px] overflow-hidden transition-all duration-300 ease-in-out hover:scale-[1.01] hover:shadow-2xl hover:shadow-teal-200/50 rounded-2xl p-4 bg-teal-50">
   <a href={`/Blog/${post.id}`}>
     <Image 
       src={post.data.image}
@@ -21,9 +22,11 @@ const { post } = Astro.props;
   <a
      href={`/Blog/${post.id}`}
      class="text-4xl text-zinc-500 font-semibold inline-block">
-     <h2>{post.data.title}</h2>
+     <h2 class="post-title">{post.data.title}</h2>
     </a>
     <p class="text-zinc-500 text-2xl line-clamp-2">
       {post.body}
     </p>
 </article>
+
+

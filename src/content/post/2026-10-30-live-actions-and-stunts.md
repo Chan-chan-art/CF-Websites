@@ -8,7 +8,6 @@ tags:
   - Professional Stunt Man
 categories:
   - Action
-  - Thriller
 author: Changest Tubay
 featured: false
 image: ../../assets/actions star.avif

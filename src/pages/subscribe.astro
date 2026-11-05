@@ -1,0 +1,144 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Main from "../components/Main.astro";
+import H1 from "../components/H1.astro";
+---
+
+<Layout title="Subscribe | Rhythm Nation">
+  <Main>
+    <div class="max-w-4xl mx-auto pt-16 pb-24 px-4">
+      <div class="text-center max-w-2xl mx-auto mb-12">
+        <H1 text="Join the Rhythm Nation Newsletter" />
+        <p class="text-zinc-500 text-xl mt-4">
+          Get weekly curated deep-dives into music culture, production secrets, and fresh audio trends delivered straight to your inbox. No spam. Just pure rhythm.
+        </p>
+      </div>
+
+      <!-- Main Interaction Card -->
+      <div class="bg-zinc-50 border border-zinc-200 rounded-3xl p-8 md:p-12 shadow-xl max-w-xl mx-auto relative overflow-hidden">
+        
+        <!-- Form State Container -->
+        <div id="subscribe-form-container" class="transition-all duration-500 ease-in-out opacity-100 scale-100">
+          <form id="newsletter-form" class="space-y-6">
+            <div>
+              <label for="first-name" class="block text-zinc-700 text-sm font-semibold mb-2">First Name</label>
+              <input 
+                type="text" 
+                id="first-name" 
+                required
+                placeholder="John" 
+                class="w-full px-5 py-3 border border-zinc-300 rounded-xl shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 text-zinc-800 bg-white"
+              />
+            </div>
+            
+            <div>
+              <label for="email-address" class="block text-zinc-700 text-sm font-semibold mb-2">Email Address</label>
+              <input 
+                type="email" 
+                id="email-address" 
+                required
+                placeholder="john@example.com" 
+                class="w-full px-5 py-3 border border-zinc-300 rounded-xl shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 text-zinc-800 bg-white"
+              />
+            </div>
+
+            <button 
+              type="submit" 
+              class="w-full py-4 bg-zinc-900 text-white font-semibold rounded-xl shadow-lg hover:bg-zinc-800 transition-colors duration-200 cursor-pointer text-center text-lg"
+            >
+              Subscribe Now
+            </button>
+          </form>
+          
+          <p class="text-center text-zinc-400 text-xs mt-6">
+            By subscribing, you agree to share your email with the site owner. You can opt out at any time in one click.
+          </p>
+        </div>
+
+        <!-- Success State Container (Initially Hidden) -->
+        <div 
+          id="success-container" 
+          class="hidden opacity-0 max-h-0 pointer-events-none transition-all duration-500 ease-in-out text-center py-6"
+        >
+          <div class="w-16 h-16 bg-emerald-100 text-emerald-600 rounded-full flex items-center justify-center mx-auto mb-6 shadow-inner">
+            <svg xmlns="http://w3.org" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor" class="w-8 h-8">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5" />
+            </svg>
+          </div>
+          <h2 class="text-3xl text-zinc-900 font-bold mb-2">You're in the Nation!</h2>
+          <p class="text-zinc-500 text-lg max-w-sm mx-auto">
+            Thanks for joining, <span id="user-name" class="font-semibold text-zinc-800"></span>. We've sent a welcome beat to your inbox. Check your emails shortly!
+          </p>
+          <a href="/blog" class="inline-block mt-8 px-6 py-2.5 border border-zinc-300 text-zinc-600 rounded-xl hover:bg-zinc-100 transition-colors font-medium">
+            Back to Reading
+          </a>
+        </div>
+
+      </div>
+
+      <!-- Perks Grid Section -->
+      <div class="mt-20 border-t border-zinc-200 pt-16">
+        <h3 class="text-center text-2xl font-semibold text-zinc-800 mb-10">What you get every Sunday:</h3>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div class="p-6 bg-white rounded-2xl shadow-sm border border-zinc-100">
+            <div class="text-3xl mb-3">🎧</div>
+            <h4 class="text-xl font-medium text-zinc-900 mb-1">Exclusive Playlists</h4>
+            <p class="text-zinc-500">Hand-picked sonic landscapes across genres to elevate your weekly focus or workouts.</p>
+          </div>
+          <div class="p-6 bg-white rounded-2xl shadow-sm border border-zinc-100">
+            <div class="text-3xl mb-3">📝</div>
+            <h4 class="text-xl font-medium text-zinc-900 mb-1">Bonus Breakdowns</h4>
+            <p class="text-zinc-500">Behind-the-scenes engineering and songwriting tricks that don't make it to the main blog.</p>
+          </div>
+          <div class="p-6 bg-white rounded-2xl shadow-sm border border-zinc-100">
+            <div class="text-3xl mb-3">🎁</div>
+            <h4 class="text-xl font-medium text-zinc-900 mb-1">Early Access</h4>
+            <p class="text-zinc-500">Be the first to comment on new articles and download custom sound kits or sample libraries.</p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </Main>
+</Layout>
+
+<script>
+  const form = document.getElementById("newsletter-form") as HTMLFormElement | null;
+  const formContainer = document.getElementById("subscribe-form-container");
+  const successContainer = document.getElementById("success-container");
+  const userNameSpan = document.getElementById("user-name");
+
+  if (form && formContainer && successContainer && userNameSpan) {
+    form.addEventListener("submit", (e) => {
+      e.preventDefault();
+
+      const firstNameInput = document.getElementById("first-name") as HTMLInputElement;
+      const emailInput = document.getElementById("email-address") as HTMLInputElement;
+
+      const name = firstNameInput.value.trim();
+      const email = emailInput.value.trim();
+
+      // Here you will eventually plug in your API call (e.g., Mailchimp, ConvertKit, loops.so, or Astro Actions)
+      console.log(`Subscribing Name: ${name}, Email: ${email}`);
+
+      // Set the subscriber's name in the success prompt
+      userNameSpan.textContent = name;
+
+      // ✅ Smoothly animate states out and in
+      formContainer.classList.add("opacity-0", "scale-95", "pointer-events-none");
+      
+      setTimeout(() => {
+        formContainer.classList.add("hidden");
+        
+        // Reveal the success checkmark screen
+        successContainer.classList.remove("hidden", "pointer-events-none");
+        successContainer.classList.add("max-h-[500px]");
+        
+        // Small delay to allow element processing before opacity handles the fade-in animation
+        setTimeout(() => {
+          successContainer.classList.add("opacity-100");
+        }, 50);
+      }, 500);
+    });
+  }
+</script>
