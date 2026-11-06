@@ -1,18 +1,17 @@
 ---
-import Welcome from '../components/Welcome.astro';
-import { Card, CardContent, CardAction, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/starwind/card";
+// index.astro
+import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/components/starwind/card";
 import { Button } from "@/components/starwind/button";
 import { Badge } from "@/components/starwind/badge";
-import Layout from '../layouts/Layout.astro';
 import H1 from '../components/H1.astro'
 import H3 from '../components/H3.astro'
 import SubscribeForm from '../components/SubscribeForm.astro'
 import Main from '../components/Main.astro'
-import Blogs from '../pages/Blogs.astro'
+import { Icon } from "astro-icon/components"
+
 export const prerender = true;
 
-import { Icon } from "astro-icon/components"
-  const socialLinks = [
+const socialLinks = [
   {
     name: "Facebook",
     url: "https://facebook.com",
@@ -25,139 +24,151 @@ import { Icon } from "astro-icon/components"
   },
   {
     name: "YouTube",
-    url: "https://facebook.com",
+    url: "https://youtube.com", // ✅ Fixed link destination path parameter
     icon: "mdi:youtube"
   }
-]
+];
 ---
 
-<div class="h-full w-full bg-cover bg-center bg-no-repeat flex flex-col justify-center px-6" 
-     style="background-image: url('./bg.avif');">
-<div class=" text-center md:text-left p-20 pt-10 ">    
-
-  <H1 text="Rhythm Nation"/>
-  <H3 text="SOUND HAS NO BORDERS" />
-  <p class="border-l-2 border-teal-500 pl-4">A digital stage for global music, cultural deep dives, and curated playlists that cross every meridian.</p>
-  <div class="pt-10">
-    <div class="pl-2">
-  <Button variant="primary">Talk with us</Button>
-  </div>
-  <div class="flex flex-row justify-center md:justify-start items-center pt-2">
-    <ul class="flex flex-wrap mb-1 ">
-        {socialLinks.map((link) => (
-        <li>
-          <a href={link.url}
-             class="hover:text-teal-500 transition-colors duration-200">
-              <Icon name={link.icon} class="w-12 h-12 p-2" />
-             </a>
-        </li>
-        ))}
-      </ul>
+<!-- ✅ 1. Wrap the entire layout inside global layout modules to pull in your navbar header -->
+  <Main>
+    
+    <!-- Hero Section Wrapper -->
+    <div class="w-full bg-cover bg-center bg-no-repeat flex flex-col justify-center px-6 min-h-[70vh]" style="background-image: url('./bg.avif');">
+      <div class="text-center md:text-left py-20 max-w-7xl mx-auto w-full">    
+        <H1 text="Rhythm Nation"/>
+        <H3 text="SOUND HAS NO BORDERS" />
+        <p class="border-l-4 border-teal-500 pl-4 text-zinc-600 max-w-xl text-lg mt-4">
+          A digital stage for global music, cultural deep dives, and curated playlists that cross every meridian.
+        </p>
+        
+        <div class="pt-8 flex flex-col md:flex-row items-center gap-6">
+          <Button variant="primary" class="px-8 py-3 rounded-xl shadow-md">Talk with us</Button>
+          
+          <ul class="flex items-center gap-2">
+            {socialLinks.map((link) => (
+              <li>
+                <a href={link.url} target="_blank" rel="noopener noreferrer" class="text-zinc-600 hover:text-teal-600 transition-colors duration-200 block">
+                  <Icon name={link.icon} class="w-10 h-10 p-1" />
+                </a>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </div>
     </div>
-  </div>
-</div>
-</div>
 
-<section>
-<div class="bg-teal-100 flex flex-row justify-center md:justify-center items-center pt-2">
-<div class="grid grid-cols-1 md:grid-cols-4 p-2 gap-10 mt-2 mb-2">
+    <!-- Analytics Dashboard Stat Banner Section Strip -->
+    <section class="bg-teal-50 border-y border-teal-100/50 py-10">
+      <div class="max-w-7xl mx-auto px-6">
+        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8">
+          
+          <!-- Card Item 1 -->
+          <div class="border-l-4 border-teal-500 bg-white shadow-sm rounded-xl p-6 transition-transform hover:-translate-y-1 duration-200">
+            <div class="text-4xl text-teal-900 font-extrabold mb-1">500+</div>
+            <!-- ✅ Fixed spelling from "Artis" to "Artists" -->
+            <div class="text-sm font-bold text-zinc-500 uppercase tracking-wider">Global Artists</div>
+          </div>
 
-<div class="border-l-2 border-teal-500 shadow-xl rounded-1xl pl-2 pt-2 pb-2 pr-2">
-  <div class="text-3xl text-teal-900 font-thin mb-1 text-center md:text-center">500+</div>
-  <div class="text-2xl text-center font-bold md:text-center uppercase">Global Artis</div>
-</div>
+          <!-- Card Item 2 -->
+          <div class="border-l-4 border-teal-500 bg-white shadow-sm rounded-xl p-6 transition-transform hover:-translate-y-1 duration-200">
+            <div class="text-4xl text-teal-900 font-extrabold mb-1">120+</div>
+            <div class="text-sm font-bold text-zinc-500 uppercase tracking-wider">Nations Represented</div>
+          </div>
 
-<div class="border-l-2 border-teal-500 shadow-xl rounded-1xl pl-2 pt-2 pb-2 pr-2">
-  <div class="text-3xl text-teal-900 font-thin mb-1 text-center md:text-center">120+</div>
-  <div class="text-2xl text-center font-bold md:text-center uppercase">Nations Represented</div>
-</div>
+          <!-- Card Item 3 -->
+          <div class="border-l-4 border-teal-500 bg-white shadow-sm rounded-xl p-6 transition-transform hover:-translate-y-1 duration-200">
+            <div class="text-4xl text-teal-900 font-extrabold mb-1">2.5k</div>
+            <div class="text-sm font-bold text-zinc-500 uppercase tracking-wider">Curated Playlists</div>
+          </div>
 
-<div class="border-l-2 border-teal-500 shadow-xl rounded-1xl pl-2 pt-2 pb-2 pr-2">
-  <div class="text-3xl text-teal-900 font-thin mb-1 text-center md:text-center">2.5k</div>
-  <div class="text-2xl text-center font-bold md:text-center uppercase">Curated Playlists</div>
-</div>
+          <!-- Card Item 4 -->
+          <div class="border-l-4 border-teal-500 bg-white shadow-sm rounded-xl p-6 transition-transform hover:-translate-y-1 duration-200">
+            <div class="text-4xl text-teal-900 font-extrabold mb-1">1.2M</div>
+            <div class="text-sm font-bold text-zinc-500 uppercase tracking-wider">Monthly Listeners</div>
+          </div>
 
-<div class="border-l-2 border-teal-500 shadow-xl rounded-1xl pl-2 pt-2 pb-2 pr-2">
-  <div class="text-3xl text-teal-900 font-thin mb-1 text-center md:text-center">1.2M</div>
-  <div class="text-2xl text-center font-bold md:text-center uppercase">Monthly Listeners</div>
-</div>
-</div>
-</div>
-</section>
+        </div>
+      </div>
+    </section>
 
-<section>
-<div class=" text-center md:text-left p-20 pt-10 ">
-<H1 text="Echos From The Field"/>
-<p>"Echoes from the Field" (or "Echoes from the Fields") can refer to several notable works across music, literature, and media:</p>
+    <!-- Echoes From The Field Section Grid Layout Area -->
+    <section class="max-w-7xl mx-auto px-6 py-20">
+      <div class="text-center md:text-left mb-12">
+        <H1 text="Echoes From The Field"/>
+        <p class="text-zinc-500 text-lg mt-2 max-w-3xl">
+          Exploring notable cross-cultural artistic milestones across indie musical releases, narrative literature, and audio industry podcast series.
+        </p>
+      </div>
 
-<div class="grid grid-cols-1 md:grid-cols-3 gap-8 mt-10">
-<Card class="relative mx-auto w-full max-w-sm">
-  <img
-    src="https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=600&h=400&fit=crop"
-    alt="Event cover"
-    class="aspect-video w-full object-cover"
-  />
-  <CardHeader>   
-    <CardTitle>Music</CardTitle>
-    <CardContent>
-      <ul>
-      <li><strong>• Echoes from the Fields:</strong> A release by the Concerned Artists of the Philippines Portland (released October 31, 2025), featuring tracks such as Awit sa Luisita, Hacienda, and Tano.
-      <Badge size="sm" variant="primary" class="ml-2"> Bandcamp</Badge>
-      </li>  
-      </ul>   
-    </CardContent>
-  </CardHeader>
-  <CardFooter>
-    <Button class="w-full">View Event</Button>
-  </CardFooter>
-</Card>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        
+        <!-- Category Card 1: Music -->
+        <div class="bg-white border border-zinc-200 rounded-2xl overflow-hidden shadow-sm flex flex-col justify-between hover:shadow-md transition-shadow duration-200">
+          <div>
+            <!-- ✅ Unique topic image backdrop -->
+            <img src="/liveconcertstage.avif" alt="Live Concert Stage" class="aspect-video w-full object-cover" />
+            <div class="p-6">
+              <div class="flex items-center justify-between mb-3">
+                <span class="text-xl font-bold text-zinc-900">Music</span>
+                <Badge size="sm" variant="primary">Bandcamp</Badge>
+              </div>
+              <p class="text-zinc-600 leading-relaxed">
+                Featured compilation release by the Concerned Artists of the Philippines Portland, tracking iconic soundscapes such as <em>Awit sa Luisita</em>, <em>Hacienda</em>, and <em>Tano</em>.
+              </p>
+            </div>
+          </div>
+          <div class="p-6 pt-0">
+            <!-- ✅ Context action label tag clean update -->
+            <Button class="w-full py-3 bg-zinc-900 text-white hover:bg-zinc-800 rounded-xl font-medium transition-colors">Explore Release</Button>
+          </div>
+        </div>
 
-<Card class="relative mx-auto w-full max-w-sm">
-  <img
-    src="https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=600&h=400&fit=crop"
-    alt="Event cover"
-    class="aspect-video w-full object-cover"
-  />
-  <CardHeader>   
-    <CardTitle>Literature</CardTitle>
-    <CardContent>
-      <ul>
-      <li><strong>• Echoes From the Fields: </strong> : A romantic novel by Michel Aflalo about Esther and Michel in a 1973 Israeli village, and their reunion 20 years later, reunion 20 years later.
-      <Badge size="sm" variant="primary" class="ml-2"> Amazon.com</Badge>
-      </li>
-      
-      </ul>   
-    </CardContent>
-  </CardHeader>
-  <CardFooter>
-    <Button class="w-full">View Event</Button>
-  </CardFooter>
-</Card>
+        <!-- Category Card 2: Literature -->
+        <div class="bg-white border border-zinc-200 rounded-2xl overflow-hidden shadow-sm flex flex-col justify-between hover:shadow-md transition-shadow duration-200">
+          <div>
+            <img src="/openbookontable.avif" alt="Open Book on Table" class="aspect-video w-full object-cover" />
+            <div class="p-6">
+              <div class="flex items-center justify-between mb-3">
+                <span class="text-xl font-bold text-zinc-900">Literature</span>
+                <Badge size="sm" variant="primary">Amazon</Badge>
+              </div>
+              <!-- ✅ Trimmed duplicate trailing "reunion 20 years later" string text statement -->
+              <p class="text-zinc-600 leading-relaxed">
+                A romantic historical novel by Michel Aflalo following the story of Esther and Michel set within an Israeli village, capturing their lives and eventual reunion two decades later.
+              </p>
+            </div>
+          </div>
+          <div class="p-6 pt-0">
+            <Button class="w-full py-3 bg-zinc-900 text-white hover:bg-zinc-800 rounded-xl font-medium transition-colors">Explore Release</Button>
+          </div>
+        </div>
 
-<Card class="relative mx-auto w-full max-w-sm">
-  <img
-    src="https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=600&h=400&fit=crop"
-    alt="Event cover"
-    class="aspect-video w-full object-cover"
-  />
-  <CardHeader>   
-    <CardTitle>Media & Industry Series</CardTitle>
-    <CardContent>
-      <ul>
-      <li><strong>• STRYDE’s "Echoes from the Field":</strong> An interview and podcast series exploring seismic exploration campaigns, including a feature with Polaris Seismic CEO Mike Popham.
-      <Badge size="sm" variant="primary" class="ml-2"> STRYDE</Badge>
-      </li>
-    </ul>
-    </CardContent>
-  </CardHeader>
-  <CardFooter>
-    <Button class="w-full">View Event</Button>
-  </CardFooter>
-</Card>
+        <!-- Category Card 3: Media Series -->
+        <div class="bg-white border border-zinc-200 rounded-2xl overflow-hidden shadow-sm flex flex-col justify-between hover:shadow-md transition-shadow duration-200">
+          <div>
+            <img src="/vintagerecordingmicrophone.avif" alt="Vintage Recording Microphone" class="aspect-video w-full object-cover" />
+            <div class="p-6">
+              <div class="flex items-center justify-between mb-3">
+                <span class="text-xl font-bold text-zinc-900">Media & Podcasts</span>
+                <Badge size="sm" variant="primary">STRYDE</Badge>
+              </div>
+              <p class="text-zinc-600 leading-relaxed">
+                An expert interview podcast series exploring large-scale seismic exploration campaigns, including an audio profile feature with Polaris Seismic CEO Mike Popham.
+              </p>
+            </div>
+          </div>
+          <div class="p-6 pt-0">
+            <Button class="w-full py-3 bg-zinc-900 text-white hover:bg-zinc-800 rounded-xl font-medium transition-colors">Explore Release</Button>
+          </div>
+        </div>
 
-</div>
-</div>
-</section>
-<section>
-<SubscribeForm />
-</section>
+      </div>
+    </section>
+
+    <!-- Global Subscription Form Block Panel Area -->
+    <section class="bg-zinc-50 border-t border-zinc-200">
+      <SubscribeForm />
+    </section>
+
+  </Main>

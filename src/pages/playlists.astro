@@ -44,18 +44,18 @@ function getYouTubeVideoId(url:string) {
   }
 
 function getSpotifyEmbedUrl(url: string) {
-  if (url.includes('://spotify.com')) {
-    // 1. Break the URL string apart right at the path indicator
-    const parts = url.split('/playlist/');
-    const rightSide = parts[1]; // Grabs everything after '/playlist/'
-    
-    // 2. Safely clean out any query arguments at the end (like ?si=...)
-    const playlistId = rightSide.split('?')[0];
-    
-    // 3. Assemble the absolute secure embed URL path
-    return `https://spotify.com{playlistId}`;
+  try {
+    const parsedUrl = new URL(url);
+    const [resourceType, playlistId] = parsedUrl.pathname.split("/").filter(Boolean);
+
+    if (parsedUrl.hostname !== "open.spotify.com" || resourceType !== "playlist" || !playlistId) {
+      return "";
+    }
+
+    return `https://open.spotify.com/embed/playlist/${encodeURIComponent(playlistId)}?utm_source=generator&theme=0`;
+  } catch {
+    return "";
   }
-  return '';
 }
 
 const tools = [
@@ -115,59 +115,74 @@ const tools = [
       </div>
       
       <!-- ✅ Player Card Container with relative positioning for absolute child layers -->
-      <div class="player-card relative w-full aspect-video rounded-xl bg-gradient-to-br from-zinc-900 via-slate-800 to-zinc-900 border border-zinc-700 overflow-hidden group cursor-pointer" data-player-card>
+      <div
+        class:list={[
+          "player-card relative w-full aspect-video rounded-xl bg-gradient-to-br from-zinc-900 via-slate-800 to-zinc-900 border border-zinc-700 overflow-hidden group",
+          !getSpotifyEmbedUrl(playlist.watchUrl) && "cursor-pointer",
+        ]}
+        data-player-card
+      >
 
-        <!-- Center Audio Play Icon Interface Overlay Layer -->
-        <div class="absolute inset-0 flex flex-col items-center justify-center gap-3 z-20">
-          <div class="w-16 h-16 bg-red-600 group-hover:bg-red-700 text-white rounded-full flex items-center justify-center shadow-xl group-hover:scale-110 transition-all duration-300">
-            <!-- ✅ Fixed typo: Changed getYoutTubeVideoId to getYouTubeVideoId -->
-            <button 
-              type="button" 
-              class="play-button flex items-center justify-center w-full h-full cursor-pointer text-white"
-              data-play-video
-              data-video-id={getYouTubeVideoId(playlist.watchUrl)}
-            >
-              <svg xmlns="http://w3.org" fill="currentColor" viewBox="0 0 24 24" class="w-8 h-8 ml-0.5">
-                <path d="M8 5v14l11-7z" />
-              </svg>
-            </button>
-          </div>
-          <span class="text-zinc-400 group-hover:text-white font-medium tracking-wide text-sm transition-colors duration-200">
-            Launch Track Player
-          </span>
-        </div>
+        {getSpotifyEmbedUrl(playlist.watchUrl) ? (
+          <iframe
+            class="absolute inset-0 w-full h-full rounded-xl"
+            title={`Listen to ${playlist.title} on Spotify`}
+            src={getSpotifyEmbedUrl(playlist.watchUrl)}
+            allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+            loading="lazy"
+          ></iframe>
+        ) : (
+          <>
+            <div class="absolute inset-0 flex flex-col items-center justify-center gap-3 z-20">
+              <div class="w-16 h-16 bg-red-600 group-hover:bg-red-700 text-white rounded-full flex items-center justify-center shadow-xl group-hover:scale-110 transition-all duration-300">
+                <button
+                  type="button"
+                  class="play-button flex items-center justify-center w-full h-full cursor-pointer text-white"
+                  data-play-video
+                  data-video-id={getYouTubeVideoId(playlist.watchUrl)}
+                  aria-label={`Play ${playlist.title}`}
+                >
+                  <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24" class="w-8 h-8 ml-0.5">
+                    <path d="M8 5v14l11-7z" />
+                  </svg>
+                </button>
+              </div>
+              <span class="text-zinc-400 group-hover:text-white font-medium tracking-wide text-sm transition-colors duration-200">
+                Launch Track Player
+              </span>
+            </div>
 
-        <!-- Premium Embedded Video Frame (Hidden initially until active trigger event) -->
-        <iframe 
-          class="hidden absolute inset-0 w-full h-full z-30 rounded-xl bg-gradient-to-br from-zinc-900 via-emerald-950 to-zinc-900 border-emerald-800/40 bg-gradient-to-br from-zinc-900 via-red-950 to-zinc-900 border-red-900/40"
+            <iframe
+              class="hidden absolute inset-0 w-full h-full z-30 rounded-xl"
+              data-video-frame
+              title={`Play ${playlist.title}`}
+              src=""
+              allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+              allowfullscreen
+            ></iframe>
 
-          data-video-frame
-          title={`Play ${playlist.title}`}
-          src=""
-          allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" 
-          allowfullscreen
-        ></iframe>
+            <div class="absolute inset-0 opacity-10 flex items-center justify-around px-12 pointer-events-none select-none z-10">
+              <div class="w-1 bg-white h-24 rounded-full group-hover:h-32 transition-all duration-500"></div>
+              <div class="w-1 bg-white h-12 rounded-full group-hover:h-20 transition-all duration-500 delay-75"></div>
+              <div class="w-1 bg-white h-36 rounded-full group-hover:h-44 transition-all duration-500 delay-100"></div>
+              <div class="w-1 bg-white h-16 rounded-full group-hover:h-28 transition-all duration-500 delay-75"></div>
+              <div class="w-1 bg-white h-28 rounded-full group-hover:h-36 transition-all duration-500"></div>
+            </div>
 
-        <!-- Stylized Abstract Audio Wave Decoration Lines Layer -->
-        <div class="absolute inset-0 opacity-10 flex items-center justify-around px-12 pointer-events-none select-none z-10">
-          <div class="w-1 bg-white h-24 rounded-full group-hover:h-32 transition-all duration-500"></div>
-          <div class="w-1 bg-white h-12 rounded-full group-hover:h-20 transition-all duration-500 delay-75"></div>
-          <div class="w-1 bg-white h-36 rounded-full group-hover:h-44 transition-all duration-500 delay-100"></div>
-          <div class="w-1 bg-white h-16 rounded-full group-hover:h-28 transition-all duration-500 delay-75"></div>
-          <div class="w-1 bg-white h-28 rounded-full group-hover:h-36 transition-all duration-500"></div>
-        </div>
+            <div class="absolute inset-0 bg-indigo-600/0 group-hover:bg-indigo-600/10 transition-colors duration-300 z-10 pointer-events-none"></div>
+          </>
+        )}
 
-        <!-- Subtle Hover Ambient Glow Tint Layer -->
-        <div class="absolute inset-0 bg-indigo-600/0 group-hover:bg-indigo-600/10 transition-colors duration-300 z-10"></div>
-        
-        <!-- Lower Right Context External Target Link Tag -->
-        <div class="absolute bottom-4 right-4 bg-zinc-900/80 text-zinc-300 px-3 py-1.5 rounded-lg text-sm font-medium backdrop-blur-md border border-zinc-700/50 z-20">
-          <a href={playlist.watchUrl} target="_blank" rel="noopener noreferrer" class="open-video hover:text-white transition-colors">
-            Open Video ↗
-          </a>
-        </div>
+      </div>
 
-      </div> <!-- 👈 Closed player-card container correctly -->
+      <a
+        href={playlist.watchUrl}
+        target="_blank"
+        rel="noopener noreferrer"
+        class="self-end mt-3 bg-zinc-100 hover:bg-zinc-200 text-zinc-700 hover:text-zinc-900 px-3 py-1.5 rounded-lg text-sm font-medium transition-colors"
+      >
+        {getSpotifyEmbedUrl(playlist.watchUrl) ? "Open on Spotify ↗" : "Watch on YouTube ↗"}
+      </a>
 
     </div> <!-- 👈 Closed main loop mapping card wrapper correctly -->
   ))}
@@ -228,7 +243,7 @@ const tools = [
       if (!iframe || !videoId) return;
       iframe.setAttribute("src",
 
-      `https:/www.youtube-nocookie.com/embed/${videoId}?autoplay=1&playsinline=1`);
+      `https://www.youtube-nocookie.com/embed/${videoId}?autoplay=1&playsinline=1`);
 
       iframe.classList.remove("hidden");
 
@@ -238,4 +253,3 @@ const tools = [
   });
 
 </script>
-

@@ -1,141 +1,233 @@
 ---
-import Layout from "../layouts/Layout.astro"
-import H1 from "../components/H1.astro"
-import H3 from "../components/H3.astro"
+// about.astro
+import Layout from "../layouts/Layout.astro";
+import H1 from "../components/H1.astro";
+import H3 from "../components/H3.astro";
 import { Image } from 'astro:assets';
 import { Video } from '@/components/starwind/video';
+
 export const prerender = true;
 
-// 1. Your data array (can come from an API, Markdown files, or hardcoded)
+// Video IDs link each set-list track to its YouTube player.
 const items = [
-  "Aretha Franklin - Chain Of Fools", "Aretha Franklin - Freeway Of Love", "Aretha Franklin - Jump To It",
-  "Aretha Franklin - Jump To It", "Aretha Franklin - Natural Woman", "Aretha Franklin - Respect",
-  "Ben E. King - Stand By Me", "Chairman Of The Board - Carolina Girls", "The Contours - Do You Love Me"
+  { title: "Aretha Franklin - Chain Of Fools", videoId: "5C4FnlftQt4" },
+  { title: "Aretha Franklin - Freeway Of Love", videoId: "Ip_pjb5_fgA" },
+  { title: "Aretha Franklin - Jump To It", videoId: "tD5po4UGGaU" },
+  { title: "Aretha Franklin - Natural Woman", videoId: "8jCFzreP1ng" },
+  { title: "Aretha Franklin - Respect", videoId: "A134hShx_gw" },
+  { title: "Ben E. King - Stand By Me", videoId: "VMNKlr_MCdM" },
+  { title: "Chairman Of The Board - Carolina Girls", videoId: "XVM_tPoakgw" },
+  { title: "The Contours - Do You Love Me", videoId: "cYfP6_nqeFQ" }
 ];
 
-// Define how many items to show initially
 const visibleCount = 3;
-
 ---
-<Layout title="Blog | Rhythm Nation" >
-  <div class="bg-[linear-gradient(rgba(0,0,0,0.5),rgba(0,0,0,0.5)),url('/bg1.avif')] bg-cover bg-center flex items-center justify-center text-white">
-    <div class="md:text-left text-center p-14">
-    <H1 text="About Us"/>
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mt-10">
-    <Image class="rounded-2xl shadow-xl max-w-1xl"
-  src="/photo-1507838153414-b4b713384a76.avif" 
-  width={1000} 
-  height={1000} 
-  alt="Rhythm"></Image>
 
-    <p class="text-center text-white md:text-left max-w-4xl text-lg">
-     “The absolute best out there! Words can’t describe how fantastic y’all were.   Every song, every dance-it was all amazing! Our guests are still raving!” - Kristen Saban Settas & Adam Settas
-      With more than 25years of traveling and entertaining music lovers of all ages, we make it our mission to create an unforgettable event every time we step on stage!
-      Pro-Athletes including Brian McCann of the Atlanta Braves, Kevin Butler of the Chicago Bears and Nancy Lopez, LPGA star,  Southeastern Conference Univ of Alabama Football Coach, Nick Saban, Local TV Personalities, Fortune 500 Company CEO’s, Brides, Grooms and top event planners’ all across the country have chosen Rhythm Nation to dazzle their guests and now proudly recommend the band to their colleagues, peers and clients.
-      Rhythm Nation performances blend elements of popular, timeless and recognizable musical genres which create spirited events that are enjoyed by all and happily remembered long after the event has concluded.
-      Whether entertaining an intimate group of 30 or thrilling a crowd of 300,000, we deliver an energetic, musically exciting and interactive show!
-    </p>
-    
-    </div>
-    </div>
-    </div>
+<Layout title="About Us | Rhythm Nation">
+  
+  <!-- Hero Section Wrapper: Displays background banner art beautifully -->
+  <div class="bg-center flex items-center justify-center text-black py-20">
+    <div class="text-center md:text-left max-w-7xl mx-auto px-6 w-full">
+      <H1 text="About Us"/>
+      
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 mt-10 items-center">
+        <Image 
+          class="rounded-3xl shadow-2xl w-full object-cover max-w-xl mx-auto lg:mx-0"
+          src="/photo-1507838153414-b4b713384a76.avif" 
+          width={800} 
+          height={800} 
+          alt="Rhythm Nation Live Performance Group"
+        />
 
-    <div class="p-15 w-full flex items-end">
-    <div class="w-full min-h-screen ">
-    
-    <div class="p-4 pb-4">
-
-    
-      <p class="text-center md:text-left text-4xl font-bold">“The absolute best out there! Words can’t describe how fantastic y’all were.   Every song, every dance-it was all amazing! Our guests are still raving!”</p>
-      <p class="text-center md:text-left mt-4 leading relaxed italic text-lg italic">- Kristen Saban Settas & Adam Settas</p>
-   
-    <ul class="text-center md:text-left my-10 list-disc list-inside space-y-3 leading-relaxed text-teal-900 word-spacing-lg">
-      <li>10-piece band [4 exceptional front line vocalists, dynamic 4 piece rhythm section and 2 lively horn players]</li>
-      <li>3 hour non-stop show (upon request)</li>
-      <li>Special attention is always given to wardrobe, costuming, props and unique party themes</li>
-      <li>Team Building “Live Band” Karaoke shows available for our corporate clients</li>
-      <li>Choreographed and interactive performances at every event</li>
-      <li>Musical styles include: Current Hits, R & B, Motown, Funk, Classic Rock,  Retro 70’s & 80’s, Disco, Jazz and Swing</li>
-      <li>Traditional Jewish songs including the Hora [sung in Hebrew]</li>
-      <li>Rhythm Nation is equipped with professional quality sound equipment and stage lighting adequate for most events</li>
-      <li>Rhythm Nation will travel any where in the world; all band members hold current US Passports</li>
-    </ul> 
-
-    <p class="text-center md:text-left text-4xl text-teal-900 font-bold">..........be a part of the Rhythm Nation!</p>
+        <div class="space-y-6 text-black-100 text-lg leading-relaxed md:text-left text-center">
+          <!-- ✅ Removed duplicate blockquote string quote from paragraph introduction -->
+           <span class="text-zinc-700 text-1xl font-normal leading-relaxed"><strong>
+          <p>
+            With more than 25 years of traveling and entertaining music lovers of all ages, we make it our mission to create an unforgettable event every time we step on stage!
+          
+            Pro-Athletes including Brian McCann of the Atlanta Braves, Kevin Butler of the Chicago Bears and Nancy Lopez, LPGA star, Southeastern Conference Univ of Alabama Football Coach, Nick Saban, Local TV Personalities, Fortune 500 Company CEO’s, Brides, Grooms and top event planners all across the country have chosen Rhythm Nation to dazzle their guests and now proudly recommend the band to their colleagues, peers and clients.
+          </p>
+          <p>
+            Rhythm Nation performances blend elements of popular, timeless and recognizable musical genres which create spirited events that are enjoyed by all and happily remembered long after the event has concluded.
+         
+            Whether entertaining an intimate group of 30 or thrilling a crowd of 300,000, we deliver an energetic, musically exciting and interactive show!
+          </p></strong></span>
+        </div>
+      </div>
     </div>
-    </div>
-    </div>
-
-  <div class="w-full text-center md:text-left p-14 bg-slate-100">
-  <div class="pt-6 pb-6 ">
-  <H1 text="VIDEOS"/>
   </div>
 
-  <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
-  <div class="mb-12 mt-1">  
+  <!-- ✅ Fixed Padding Constraints: Swapped 'p-15' for standard responsive text flow layers -->
+  <div class="py-20 px-6 w-full max-w-5xl mx-auto">
+    <div class="w-full space-y-12">
+      
+      <!-- Big Centerpiece Review Banner -->
+      <div class="border-l-4 border-teal-500 pl-6 space-y-4">
+        <p class="text-zinc-800 text-3xl font-bold leading-snug">
+          “The absolute best out there! Words can’t describe how fantastic y’all were. Every song, every dance—it was all amazing! Our guests are still raving!”
+        </p>
+        <p class="text-teal-600 font-semibold tracking-wide text-lg">— Kristen Saban Settas & Adam Settas</p>
+      </div>
+   
+      <!-- Band Attributes Features List Section -->
+      <ul class="grid grid-cols-1 md:grid-cols-2 gap-4 text-zinc-700 text-base leading-relaxed list-none pt-6">
+        <li class="flex items-start gap-2.5">
+          <span class="text-teal-500 font-bold text-lg">✓</span>
+          <span><strong>10-Piece Powerhouse Band:</strong> 4 frontline vocalists, a dynamic 4-piece rhythm core, and 2 lively horn layers.</span>
+        </li>
+        <li class="flex items-start gap-2.5">
+          <span class="text-teal-500 font-bold text-lg">✓</span>
+          <span><strong>3-Hour Non-Stop Show:</strong> Seamless musical transitions available upon runtime request.</span>
+        </li>
+        <li class="flex items-start gap-2.5">
+          <span class="text-teal-500 font-bold text-lg">✓</span>
+          <span><strong>Custom Wardrobe & Styling:</strong> Special care given to costuming, props, and unique matching party themes.</span>
+        </li>
+        <li class="flex items-start gap-2.5">
+          <span class="text-teal-500 font-bold text-lg">✓</span>
+          <span><strong>Live Band Karaoke:</strong> Interactive corporate team-building shows tailored to your clients.</span>
+        </li>
+        <li class="flex items-start gap-2.5">
+          <span class="text-teal-500 font-bold text-lg">✓</span>
+          <span><strong>Global Sound Portfolio:</strong> Traversing Current Hits, R&B, Motown, Funk, Classic Rock, Retro 70s/80s, Disco, Jazz, and Swing.</span>
+        </li>
+        <li class="flex items-start gap-2.5">
+          <span class="text-teal-500 font-bold text-lg">✓</span>
+          <span><strong>Passport Ready:</strong> Rhythm Nation travels anywhere in the world—all members hold current US passports.</span>
+        </li>
+      </ul> 
 
-    <Video 
-      src="/videos/55859-504238916_medium.mp4" 
-      autoplay 
-      loop 
-      muted 
-      playsinline
-      preload="metadata"
-      class="w-full max-w-2xl  aspect-video rounded-lg shadow-lg"
-    /> 
-</div>
+      <p class="text-2xl text-teal-800 font-bold tracking-tight pt-4 text-center md:text-left">
+        Join the Nation. Experience the Rhythm.
+      </p>
+    </div>
+  </div>
 
-<div>
-<div class="max-w-md mx-auto p-4 bg-slate-50 rounded-xl shadow">
-  <h2 class="text-xl font-bold mb-4">MOTION/ OLDIES</h2>
-  
-  <ul id="item-list" class="space-y-2">
-    {items.map((item, index) => (
-      <li 
-        class={`p-3 bg-white border border-slate-200 rounded-lg shadow-sm transition-all duration-300 ${index >= visibleCount ? 'hidden extra-item' : ''}`}
-      >
-        {item}
-      </li>
-    ))}
-  </ul>
+  <!-- Video Experience & Set-list Section Core -->
+  <div class="w-full py-16 px-6 bg-zinc-50 border-t border-zinc-200/60">
+    <div class="max-w-6xl mx-auto">
+      <div class="mb-10 text-center md:text-left">
+        <H1 text="Watch Us In Action"/>
+      </div>
 
-  {/* 2. The Toggle Button */}
-  {items.length > visibleCount && (
-    <button 
-      id="toggle-btn"
-      class="mt-4 w-full bg-blue-600 hover:bg-blue-700 text-white font-medium py-2 px-4 rounded-lg transition-colors"
-    >
-      Read More
-    </button>
-  )}
-</div>
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
+        
+        <!-- Video Grid Player Column (7 Columns) -->
+        <div class="lg:col-span-7 w-full">
+          <div id="featured-video-player" class="relative w-full aspect-video overflow-hidden rounded-2xl shadow-xl border border-zinc-200">
+            <Video
+              src="/videos/55859-504238916_medium.mp4"
+              autoplay
+              loop
+              muted
+              controls={false}
+              playsinline
+              preload="metadata"
+              class="absolute inset-0 w-full h-full"
+            />
+            <iframe
+              id="featured-song-iframe"
+              class="hidden absolute inset-0 w-full h-full"
+              title="Selected Motown / Oldies cover"
+              allow="autoplay; encrypted-media; picture-in-picture"
+              allowfullscreen
+            ></iframe>
+          </div>
+        </div>
 
-{/* 3. Client-side Interaction script */}
+        <!-- Music List Tracks Drawer Column (5 Columns) -->
+        <div class="lg:col-span-5 w-full space-y-6">
+          <div class="w-full bg-white border border-zinc-200 rounded-2xl p-6 shadow-sm">
+            <!-- ✅ Fixed spelling to MOTOWN -->
+            <h2 class="text-xs uppercase font-extrabold tracking-widest text-zinc-400 mb-4">Motown / Oldies Covers</h2>
+            
+            <ul id="item-list" class="space-y-2.5">
+              {items.map((item, index) => (
+                <li 
+                  class={`p-3 bg-zinc-50 border border-zinc-100 rounded-xl text-sm font-semibold text-zinc-700 shadow-sm transition-all duration-300 ${index >= visibleCount ? 'hidden extra-item opacity-0' : ''}`}
+                >
+                  <button
+                    type="button"
+                    class="w-full text-left cursor-pointer hover:text-teal-700 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-teal-600"
+                    data-song-video-id={item.videoId}
+                    data-song-title={item.title}
+                    aria-label={`Play ${item.title}`}
+                    aria-pressed="false"
+                  >
+                    {item.title}
+                  </button>
+                </li>
+              ))}
+            </ul>
+
+            {/* Toggle Action Control Element */}
+            {items.length > visibleCount && (
+              <button 
+                id="toggle-btn"
+                class="mt-4 w-full bg-teal-600 hover:bg-teal-700 text-white font-bold py-3 px-4 rounded-xl transition-colors cursor-pointer text-center text-sm tracking-wide uppercase"
+              >
+                View All Songs
+              </button>
+            )}
+          </div>
+
+          <!-- ✅ Replaced boring placeholder lore text strings with active booking copy -->
+          <p class="text-zinc-500 text-sm leading-relaxed text-center lg:text-left max-w-sm mx-auto lg:mx-0">
+            Interested in adjusting our set-list requirements or locking down booking arrangements for an upcoming tour milestone event? Hit our contact hub to customize your sound.
+          </p>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+</Layout>
+
+<!-- Type-Safe Client Side Trigger Drawer Toggle Script -->
 <script>
+  const featuredVideo = document.querySelector<HTMLVideoElement>("#featured-video-player video");
+  const songIframe = document.querySelector<HTMLIFrameElement>("#featured-song-iframe");
+  const songButtons = document.querySelectorAll<HTMLButtonElement>("[data-song-video-id]");
+
+  songButtons.forEach((songButton) => {
+    songButton.addEventListener("click", () => {
+      const videoId = songButton.dataset.songVideoId;
+      const title = songButton.dataset.songTitle;
+
+      if (!featuredVideo || !songIframe || !videoId || !title) return;
+
+      featuredVideo.pause();
+      featuredVideo.classList.add("hidden");
+      songIframe.title = `Play ${title}`;
+      songIframe.src = `https://www.youtube-nocookie.com/embed/${encodeURIComponent(videoId)}?autoplay=1&playsinline=1`;
+      songIframe.classList.remove("hidden");
+
+      songButtons.forEach((button) => {
+        button.setAttribute("aria-pressed", String(button === songButton));
+      });
+    });
+  });
+
   const button = document.getElementById('toggle-btn');
   const extraItems = document.querySelectorAll('.extra-item');
 
   if (button) {
     button.addEventListener('click', () => {
-      // Check if items are currently hidden
       const isHidden = extraItems[0].classList.contains('hidden');
 
       extraItems.forEach(item => {
-        item.classList.toggle('hidden');
+        const el = item as HTMLElement;
+        if (isHidden) {
+          el.classList.remove('hidden');
+          setTimeout(() => el.classList.remove('opacity-0'), 10);
+        } else {
+          el.classList.add('opacity-0');
+          el.classList.add('hidden');
+        }
       });
 
-      // Update button text based on state
-      button.textContent = isHidden ? 'Show Less' : 'Read More';
+      // ✅ Clean toggled layout text string parameters update
+      button.textContent = isHidden ? 'Show Less' : 'View All Songs';
     });
   }
 </script>
-
-    <p class="my-5 max-w-md mx-auto pb-7 text-black text-lg">
-      lorem ipsum dolor sit amet consectetur adipiscing elit irure lorem facilis quos animi 
-      ad magna pariatur anim aut fuga corrupti imperdiet et velit reprehenderit dolorum minim 
-    </p>
-
-  </div>
-  </div>
-  </div>
-</Layout>

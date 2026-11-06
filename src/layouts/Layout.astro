@@ -14,6 +14,18 @@ interface Props {
 
 const { title, description = "A community of music producers and enthusiasts",
  image = "/images" } = Astro.props;
+
+const pathname = Astro.url.pathname.replace(/\/+$/, "") || "/";
+const pageLabels: Record<string, string> = {
+	"/About": "About",
+	"/Blogs": "Blog",
+	"/subscribe": "Newsletter",
+	"/playlists": "Playlists",
+	"/contact": "Contact",
+	"/feed": "Feed",
+};
+const isBlogPost = pathname.startsWith("/Blog/");
+const currentPage = pageLabels[pathname] ?? title?.split("|")[0].trim() ?? "Page";
 ---
 <!doctype html>
 <html lang="en">
@@ -30,9 +42,28 @@ const { title, description = "A community of music producers and enthusiasts",
 	</head>
 	<body class="min-h-screen">
 	<Header transition:persist/>
-	
+	{pathname !== "/" && (
+		<nav aria-label="Breadcrumb" class="mx-auto max-w-7xl px-6 py-3 md:px-20">
+			<ol class="flex flex-wrap items-center gap-2 text-sm text-zinc-500">
+				<li>
+					<a href="/" class="font-medium hover:text-teal-700 transition-colors">Home</a>
+				</li>
+				<li aria-hidden="true" class="text-zinc-400">/</li>
+				{isBlogPost && (
+					<>
+						<li>
+							<a href="/Blogs" class="font-medium hover:text-teal-700 transition-colors">Blog</a>
+						</li>
+						<li aria-hidden="true" class="text-zinc-400">/</li>
+					</>
+				)}
+				<li aria-current="page" class="font-semibold text-zinc-800">
+					{currentPage}
+				</li>
+			</ol>
+		</nav>
+	)}
 <slot />
 	<Footer transition:persist/>
 	</body>
 </html>
-
